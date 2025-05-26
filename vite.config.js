@@ -4,5 +4,5 @@ import { defineConfig } from 'vite'
 
 export default defineConfig({
   base: '/review-games/',
-  plugins: [reactRouter(), tailwindcss()],
+  plugins: [reactRouter({ basename: '/review-games/' }), tailwindcss()],
 })
