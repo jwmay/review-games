@@ -3,12 +3,8 @@ import { faSquare } from '@fortawesome/free-solid-svg-icons'
 import { faSquare as faSquareOpen } from '@fortawesome/free-regular-svg-icons'
 import { Rating } from 'react-simple-star-rating'
 
-import { useGenerateRandomColors } from '../../hooks'
-
-export default function GameRow({ title }) {
+export default function GameRow({ color, title }) {
   const numBoxes = 20
-
-  const color = useGenerateRandomColors(1)[0]
 
   return (
     <div className='divide-x flex items-center' id='gameRow'>
