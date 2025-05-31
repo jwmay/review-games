@@ -13,12 +13,15 @@ export default function SabotageNavbarMenu() {
   return (
     <>
       <li>
-        <button onClick={changeColorsButtonClick}>Change Colors</button>
+        <button className='py-3' onClick={changeColorsButtonClick}>
+          Change Colors
+        </button>
       </li>
       <li>
         <Incrementer
           description='Supports up to 12 Groups'
           initialValue={config.sabotage.numGroups.default}
+          label='Groups'
           max={config.sabotage.numGroups.max}
           min={config.sabotage.numGroups.min}
           name='numGroups'
