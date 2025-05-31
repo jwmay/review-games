@@ -4,7 +4,7 @@ import SabotageNavbarMenu from './SabotageNavbarMenu'
 import SabotageProvider from './SabotageProvider'
 import GameRow from './GameRow'
 
-import { useGenerateRandomColor } from '../../hooks/hooks'
+import { useGenerateRandomColors } from '../../hooks'
 
 import { config } from '../../config'
 
@@ -16,7 +16,7 @@ export default function SabotageHome() {
   const handleColors = () => {
     setSearchParams((params) => ({
       ...params,
-      colors: [...Array(numGroups)].map(() => useGenerateRandomColor()),
+      colors: [...Array(numGroups)].map(() => useGenerateRandomColors()),
     }))
   }
   const colors = searchParams.getAll('colors')
