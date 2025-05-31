@@ -3,7 +3,7 @@ import { faSquare } from '@fortawesome/free-solid-svg-icons'
 import { faSquare as faSquareOpen } from '@fortawesome/free-regular-svg-icons'
 import { Rating } from 'react-simple-star-rating'
 
-import useGenerateRandomColor from '../../hooks/useGenerateRandomColor'
+import { useGenerateRandomColor } from '../../hooks/hooks'
 
 export default function GameRow({ title }) {
   const numBoxes = 20
