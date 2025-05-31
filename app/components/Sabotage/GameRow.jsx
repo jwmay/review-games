@@ -8,7 +8,7 @@ import { useGenerateRandomColors } from '../../hooks'
 export default function GameRow({ title }) {
   const numBoxes = 20
 
-  const color = useGenerateRandomColors()
+  const color = useGenerateRandomColors(1)[0]
 
   return (
     <div className='divide-x flex items-center' id='gameRow'>

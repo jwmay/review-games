@@ -13,10 +13,10 @@ export default function SabotageHome() {
   const numGroups =
     parseInt(searchParams.get('numGroups')) || config.sabotage.numGroups.default
 
-  const handleColors = () => {
+  const handleColorsClick = () => {
     setSearchParams((params) => ({
       ...params,
-      colors: [...Array(numGroups)].map(() => useGenerateRandomColors()),
+      colors: useGenerateRandomColors(numGroups),
     }))
   }
   const colors = searchParams.getAll('colors')
@@ -31,7 +31,9 @@ export default function SabotageHome() {
         <Navbar menu={<SabotageNavbarMenu />} title='Sabotage' />
         <div className='flex flex-col items-center gap-8'>
           <p>
-            <span onClick={handleColors}>colors:</span>{' '}
+            <span className='cursor-pointer' onClick={handleColorsClick}>
+              colors:
+            </span>{' '}
             {colors.map((color) => `${color}, `)}
           </p>
           {gameRows}
