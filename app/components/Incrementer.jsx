@@ -1,4 +1,4 @@
-import { useSearchParams } from 'react-router'
+import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 
@@ -8,25 +8,25 @@ export default function Incrementer({
   label,
   max,
   min,
-  name,
+  onChange,
 }) {
-  const [searchParams, setSearchParams] = useSearchParams({
-    [name]: initialValue,
-  })
+  const [value, setValue] = useState(initialValue)
 
   const handleButtonClick = (event) => {
     const intent = event.target.value
-    const value = parseInt(searchParams.get(name))
 
     if (intent === 'decrement' && value !== min) {
-      setSearchParams((params) => ({ ...params, [name]: value - 1 }))
+      onChange(value - 1)
+      setValue(value - 1)
     } else if (intent === 'increment' && value !== max) {
-      setSearchParams((params) => ({ ...params, [name]: value + 1 }))
+      onChange(value + 1)
+      setValue(value + 1)
     }
   }
 
   const handleInputChange = (event) => {
-    setSearchParams((params) => ({ ...params, [name]: event.target.value }))
+    onChange(event.target.value)
+    setValue(event.target.value)
   }
 
   return (
@@ -35,7 +35,7 @@ export default function Incrementer({
       <div className='join'>
         <button
           className='btn btn-square join-item'
-          disabled={searchParams.get(name) <= min}
+          disabled={value <= min}
           onClick={handleButtonClick}
           value='decrement'
         >
@@ -49,11 +49,11 @@ export default function Incrementer({
           required
           title={description}
           type='number'
-          value={searchParams.get(name)}
+          value={value}
         />
         <button
           className='btn btn-square join-item'
-          disabled={searchParams.get(name) >= max}
+          disabled={value >= max}
           onClick={handleButtonClick}
           value='increment'
         >
