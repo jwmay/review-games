@@ -25,8 +25,16 @@ export default function Incrementer({
   }
 
   const handleInputChange = (event) => {
-    onChange(event.target.value)
-    setValue(event.target.value)
+    const value = event.target.value
+
+    if (value === '') {
+      setValue(value)
+    }
+
+    if (value >= min && value <= max) {
+      onChange(value)
+      setValue(value)
+    }
   }
 
   return (
