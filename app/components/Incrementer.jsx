@@ -14,13 +14,14 @@ export default function Incrementer({
 
   const handleButtonClick = (event) => {
     const intent = event.target.value
+    const val = parseInt(value)
 
-    if (intent === 'decrement' && value !== min) {
-      onChange(value - 1)
-      setValue(value - 1)
-    } else if (intent === 'increment' && value !== max) {
-      onChange(value + 1)
-      setValue(value + 1)
+    if (intent === 'decrement' && value != min) {
+      onChange(val - 1)
+      setValue(val - 1)
+    } else if (intent === 'increment' && value != max) {
+      onChange(val + 1)
+      setValue(val + 1)
     }
   }
 
