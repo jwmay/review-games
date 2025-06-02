@@ -7,6 +7,8 @@ import {
   ScrollRestoration,
 } from 'react-router'
 
+import AppLoading from './components/AppLoading'
+
 import './app.css'
 
 export const links = () => [
@@ -45,7 +47,7 @@ export default function App() {
 }
 
 export function HydrateFallback() {
-  return <p>Loading...</p>
+  return <AppLoading />
 }
 
 export function ErrorBoundary({ error }) {

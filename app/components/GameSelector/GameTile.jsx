@@ -11,7 +11,7 @@ export default function GameTile({
     return null
   } else {
     return (
-      <div className='card glass w-96'>
+      <div className='card glass w-96 h-[560px]'>
         <figure>
           <img src={imageSrc} alt={title} />
         </figure>
