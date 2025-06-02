@@ -14,9 +14,7 @@ export default function SabotageNavbarMenu({
   return (
     <>
       <li>
-        <button className='py-3' onClick={handleColorsChangeButtonClick}>
-          Change Colors
-        </button>
+        <button onClick={handleColorsChangeButtonClick}>Change Colors</button>
       </li>
       <li>
         <Incrementer

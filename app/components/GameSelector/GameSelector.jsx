@@ -10,6 +10,7 @@ export function GameSelector() {
           description={game.description}
           imageSrc={game.imageSrc}
           key={game.title}
+          learnMoreModal={game.learnMoreModal}
           title={game.title}
         />
       ))}
