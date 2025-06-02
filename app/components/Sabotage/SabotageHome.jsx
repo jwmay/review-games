@@ -3,10 +3,11 @@ import Navbar from '../Navbar'
 import SabotageNavbarMenu from './SabotageNavbarMenu'
 import GameRow from './GameRow'
 import { config } from '../../config'
+import { useGenerateRandomColors } from '../../hooks'
 
 export default function SabotageHome() {
   const [searchParams, setSearchParams] = useSearchParams({
-    colors: config.sabotage.colors,
+    colors: useGenerateRandomColors(config.sabotage.numGroups.max),
     numGroups:
       config.sabotage.numGroups.current || config.sabotage.numGroups.default,
   })
