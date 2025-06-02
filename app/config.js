@@ -1,11 +1,14 @@
 export const config = {
   sabotage: {
-    colors: [],
+    numBoxes: {
+      default: 20,
+      max: 20,
+      min: 1,
+    },
     numGroups: {
       default: 10,
       max: 20,
       min: 1,
-      value: null,
     },
   },
 }

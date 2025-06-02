@@ -8,18 +8,25 @@ import { useGenerateRandomColors } from '../../hooks'
 export default function SabotageHome() {
   const [searchParams, setSearchParams] = useSearchParams({
     colors: useGenerateRandomColors(config.sabotage.numGroups.max),
-    numGroups:
-      config.sabotage.numGroups.current || config.sabotage.numGroups.default,
+    numBoxes: config.sabotage.numBoxes.default,
+    numGroups: config.sabotage.numGroups.default,
   })
 
   const colors = searchParams.getAll('colors')
-
+  const numBoxes = parseInt(searchParams.get('numBoxes'))
   const numGroups = parseInt(searchParams.get('numGroups'))
 
   function handleColorsChange(colors) {
     setSearchParams((searchParams) => {
       searchParams.delete('colors')
       colors.forEach((color) => searchParams.append('colors', color))
+      return searchParams
+    })
+  }
+
+  function handleNumBoxesChange(numBoxes) {
+    setSearchParams((searchParams) => {
+      searchParams.set('numBoxes', numBoxes)
       return searchParams
     })
   }
@@ -33,7 +40,12 @@ export default function SabotageHome() {
 
   function GameRows() {
     return [...Array(numGroups)].map((_, index) => (
-      <GameRow color={colors[index]} key={index} title={`Team ${index + 1}`} />
+      <GameRow
+        color={colors[index]}
+        key={index}
+        numBoxes={numBoxes}
+        title={`Team ${index + 1}`}
+      />
     ))
   }
 
@@ -43,6 +55,7 @@ export default function SabotageHome() {
         menu={
           <SabotageNavbarMenu
             onColorsChange={handleColorsChange}
+            onNumBoxesChange={handleNumBoxesChange}
             onNumGroupsChange={handleNumGroupsChange}
           />
         }
