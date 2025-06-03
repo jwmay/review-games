@@ -50,7 +50,7 @@ export default function SabotageHome() {
   }
 
   return (
-    <div className='min-h-screen pb-16'>
+    <div className='min-h-screen'>
       <Navbar
         menu={
           <SabotageNavbarMenu
@@ -61,7 +61,7 @@ export default function SabotageHome() {
         }
         title='Sabotage'
       />
-      <div className='flex flex-col items-center gap-8'>
+      <div className='flex flex-col items-center gap-8 py-8'>
         <GameRows />
       </div>
     </div>

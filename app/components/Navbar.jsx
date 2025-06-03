@@ -24,7 +24,7 @@ export function NavbarMenuButton() {
 
 export default function Navbar({ menu, title }) {
   return (
-    <nav className='navbar bg-base-100 mb-8'>
+    <nav className='navbar bg-base-100'>
       <div className='navbar-start'>
         <Link to='/'>
           <button className='btn btn-ghost text-xl'>
