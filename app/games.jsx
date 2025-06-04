@@ -6,7 +6,7 @@ export default [
     description: 'The classic trivia game!',
     imageSrc: 'images/game-tile-jeopardy.jpg',
     learnMoreModal: null,
-    comingSoon: true,
+    comingSoon: false,
   },
   {
     title: 'Sabotage',
