@@ -18,14 +18,14 @@ export default function JeopardyStartScreen({ onLoad, spreadsheetId }) {
       <h2 className='text-4xl font-jeopardy-card text-shadow-jeopardy-board uppercase my-8 text-jeopardy-gold'>
         or
       </h2>
-      <div className='border-2 border-jeopardy-gold rounded-box p-16 w-1/3 mx-auto cursor-pointer hover:bg-jeopardy-gold hover:text-white'>
-        <a href={config.jeopardy.templateUrl} target='_blank'>
+      <a href={config.jeopardy.templateUrl} target='_blank'>
+        <div className='border-2 border-jeopardy-gold rounded-box p-16 w-1/3 mx-auto cursor-pointer hover:bg-jeopardy-gold hover:text-white'>
           <FontAwesomeIcon className='mb-4' icon={faGoogleDrive} size='4x' />
           <h2 className='text-3xl font-jeopardy-card uppercase'>
             Make a copy of the Google Sheets template file to start a new game
           </h2>
-        </a>
-      </div>
+        </div>
+      </a>
     </div>
   )
 }
