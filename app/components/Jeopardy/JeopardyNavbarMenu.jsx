@@ -5,8 +5,10 @@ import {
 } from '../../actionTypes'
 
 export default function JeopardyNavbarMenu({}) {
-  // const state = useState()
+  const state = useState()
   const dispatch = useDispatch()
+
+  const isLoaded = state.data.length === 0
 
   function handleLoadNewSpreadsheetButtonClick() {
     dispatch({ type: JEOPRADY_LOAD_NEW_SPREADSHEET })
@@ -18,10 +20,10 @@ export default function JeopardyNavbarMenu({}) {
 
   return (
     <>
-      <li className='py-2'>
+      <li className={`py-2 ${isLoaded ? 'menu-disabled' : ''}`}>
         <button onClick={handleResetBoardButtonClick}>Reset game board</button>
       </li>
-      <li className='py-2'>
+      <li className={`py-2 ${isLoaded ? 'menu-disabled' : ''}`}>
         <button onClick={handleLoadNewSpreadsheetButtonClick}>
           Load new spreadsheet
         </button>
