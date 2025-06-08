@@ -19,8 +19,7 @@
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router": "^7.5.3",
-    "react-simple-star-rating": "^5.1.7",
-    "use-text-fit": "^2.0.1"
+    "react-simple-star-rating": "^5.1.7"
   },
   "devDependencies": {
     "@react-router/dev": "^7.5.3",
