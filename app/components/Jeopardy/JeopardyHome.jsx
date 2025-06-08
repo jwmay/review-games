@@ -1,44 +1,63 @@
 import { useSearchParams } from 'react-router'
-import ErrorAlert from '../ErrorAlert'
-import JeopardyFileInput from './JeopardyFileInput'
 import Navbar from '../Navbar'
-import { useGoogleSheetsReader } from '../../hooks'
+import JeopardyStartScreen from './JeopardyStartScreen'
+import JeopardyQuestionCard from './JeopardyQuestionCard'
+import JeopardyBoard from './JeopardyBoard'
+
+import { useStateValue, useDispatchValue } from './JeopardyContext'
+import {
+  JEOPARDY_SET_CLICKED,
+  JEOPARDY_SET_DATA,
+  JEOPARDY_SET_SELECTED,
+  JEOPARDY_SET_SPREADSHEET_ID,
+} from '../../actionTypes'
 
 export default function JeopardyHome() {
+  const state = useStateValue()
+  const dispatch = useDispatchValue()
+
   const [searchParams, setSearchParams] = useSearchParams({
-    sheetId: '',
-    sheetUrl: '',
+    spreadsheetId: '',
   })
 
-  const sheetId = searchParams.get('sheetId')
-  const sheetUrl = searchParams.get('sheetUrl')
+  const spreadsheetId = searchParams.get('spreadsheetId')
 
-  const { data, loading, error } = useGoogleSheetsReader(sheetId)
+  function handleQuestionCardClick(display) {
+    if (!display) {
+      dispatch({ type: JEOPARDY_SET_SELECTED, payload: { selected: null } })
+    }
+  }
 
-  function handleSheetUrlChange({ sheetId, sheetUrl }) {
+  function handleQuestionTileClick(item) {
+    dispatch({ type: JEOPARDY_SET_CLICKED, payload: { id: item.id } })
+    dispatch({ type: JEOPARDY_SET_SELECTED, payload: { selected: item } })
+  }
+
+  function handleSpreadsheetIdChange({ data, spreadsheetId }) {
     setSearchParams((searchParams) => {
-      searchParams.set('sheetId', sheetId)
-      searchParams.set('sheetUrl', sheetUrl)
+      searchParams.set('spreadsheetId', spreadsheetId)
       return searchParams
     })
+    dispatch({ type: JEOPARDY_SET_DATA, payload: { data } })
+    dispatch({ type: JEOPARDY_SET_SPREADSHEET_ID, payload: { spreadsheetId } })
   }
 
   return (
-    <div className='min-h-screen bg-jeopardy-dark-blue'>
+    <div className='min-h-screen bg-jeopardy-blue'>
       <Navbar title='Jeopardy' />
-      <div className='w-4/5 mx-auto'>
-        <h1 className='text-5xl text-center my-8 font-bold uppercase'>
-          Get Started
-        </h1>
-        <JeopardyFileInput
-          disabled={loading}
-          initialValue={sheetUrl}
-          loading={loading}
-          onChange={handleSheetUrlChange}
+      {state.data.length === 0 ? (
+        <JeopardyStartScreen
+          onLoad={handleSpreadsheetIdChange}
+          spreadsheetId={spreadsheetId}
         />
-        {error && <ErrorAlert className='mt-6'>{error.message}</ErrorAlert>}
-        {data && <pre>{JSON.stringify(data[1], null, 2)}</pre>}
-      </div>
+      ) : !state.selected ? (
+        <JeopardyBoard data={state.data} onClick={handleQuestionTileClick} />
+      ) : (
+        <JeopardyQuestionCard
+          item={state.selected}
+          onClick={handleQuestionCardClick}
+        />
+      )}
     </div>
   )
 }

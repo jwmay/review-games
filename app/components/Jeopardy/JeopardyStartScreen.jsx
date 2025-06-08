@@ -1,0 +1,31 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faGoogleDrive } from '@fortawesome/free-brands-svg-icons'
+import JeopardyFileInput from './JeopardyFileInput'
+import { config } from '../../config'
+
+export default function JeopardyStartScreen({ onLoad, spreadsheetId }) {
+  return (
+    <div className='text-center px-24 py-12'>
+      <h1 className='text-5xl font-bold font-jeopardy-card text-shadow-jeopardy-board uppercase my-8'>
+        Get Started
+      </h1>
+      <div className='border-2 border-jeopardy-gold rounded-box p-12'>
+        <h2 className='text-3xl font-jeopardy-card uppercase mb-4'>
+          Enter a Google Sheets file url
+        </h2>
+        <JeopardyFileInput initialValue={spreadsheetId} onLoad={onLoad} />
+      </div>
+      <h2 className='text-4xl font-jeopardy-card text-shadow-jeopardy-board uppercase my-8 text-jeopardy-gold'>
+        or
+      </h2>
+      <div className='border-2 border-jeopardy-gold rounded-box p-16 w-1/3 mx-auto cursor-pointer hover:bg-jeopardy-gold hover:text-white'>
+        <a href={config.jeopardy.templateUrl} target='_blank'>
+          <FontAwesomeIcon className='mb-4' icon={faGoogleDrive} size='4x' />
+          <h2 className='text-3xl font-jeopardy-card uppercase'>
+            Make a copy of the Google Sheets template file to start a new game
+          </h2>
+        </a>
+      </div>
+    </div>
+  )
+}

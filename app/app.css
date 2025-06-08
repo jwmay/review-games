@@ -1,5 +1,15 @@
 @import 'tailwindcss';
-@plugin "daisyui";
+@plugin 'daisyui';
+
+@font-face {
+  font-family: 'ITC Korinna Normal';
+  src: url('/fonts/ITC_Korinna_Normal.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Swiss 911';
+  src: url('/fonts/Swiss_911_Ultra_Compressed_BT.ttf') format('truetype');
+}
 
 @theme {
   --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif,
@@ -7,7 +17,14 @@
 }
 
 @theme {
-  --color-jeopardy-dark-blue: oklch(0.19 0.1 271);
+  --color-jeopardy-blue: oklch(0.3 0.18 267.41);
+  --color-jeopardy-gold: oklch(0.74 0.12 76.76);
+
+  --font-jeopardy-board: 'Swiss 911', 'Impact', 'Inter', ui-sans-serif,
+    system-ui, sans-serif;
+  --font-jeopardy-card: 'ITC Korinna Normal', serif;
+
+  --text-shadow-jeopardy-board: 6px 6px 0px #000000;
 }
 
 html,
