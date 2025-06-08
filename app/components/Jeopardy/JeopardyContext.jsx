@@ -1,6 +1,7 @@
 import { createContext, useContext, useReducer } from 'react'
 
 import {
+  JEOPRADY_LOAD_NEW_SPREADSHEET,
   JEOPRADY_RESET_GAME_BOARD,
   JEOPARDY_SET_CLICKED,
   JEOPARDY_SET_DATA,
@@ -19,6 +20,8 @@ const initialState = {
 
 const reducer = (state, action) => {
   switch (action.type) {
+    case JEOPRADY_LOAD_NEW_SPREADSHEET:
+      return initialState
     case JEOPRADY_RESET_GAME_BOARD:
       return {
         ...state,
