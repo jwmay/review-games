@@ -32,6 +32,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Add Environment Variables
+        env:
+          VITE_GOOGLE_SHEETS_API_KEY: ${{ secrets.VITE_GOOGLE_SHEETS_API_KEY }} # Access the secret
+        run: echo "Environment variables configured."
       - name: Install & Build
         run: |
           npm ci
