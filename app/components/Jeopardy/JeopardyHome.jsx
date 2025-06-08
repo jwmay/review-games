@@ -1,10 +1,11 @@
 import { useSearchParams } from 'react-router'
 import Navbar from '../Navbar'
+import JeopardyNavbarMenu from './JeopardyNavbarMenu'
 import JeopardyStartScreen from './JeopardyStartScreen'
 import JeopardyQuestionCard from './JeopardyQuestionCard'
 import JeopardyBoard from './JeopardyBoard'
 
-import { useStateValue, useDispatchValue } from './JeopardyContext'
+import { useState, useDispatch } from './JeopardyContext'
 import {
   JEOPARDY_SET_CLICKED,
   JEOPARDY_SET_DATA,
@@ -13,8 +14,8 @@ import {
 } from '../../actionTypes'
 
 export default function JeopardyHome() {
-  const state = useStateValue()
-  const dispatch = useDispatchValue()
+  const state = useState()
+  const dispatch = useDispatch()
 
   const [searchParams, setSearchParams] = useSearchParams({
     spreadsheetId: '',
@@ -44,7 +45,7 @@ export default function JeopardyHome() {
 
   return (
     <div className='min-h-screen bg-jeopardy-blue'>
-      <Navbar title='Jeopardy' />
+      <Navbar menu={<JeopardyNavbarMenu />} title='Jeopardy' />
       {state.data.length === 0 ? (
         <JeopardyStartScreen
           onLoad={handleSpreadsheetIdChange}

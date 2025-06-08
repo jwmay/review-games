@@ -1,6 +1,7 @@
 import { createContext, useContext, useReducer } from 'react'
 
 import {
+  JEOPRADY_RESET_GAME_BOARD,
   JEOPARDY_SET_CLICKED,
   JEOPARDY_SET_DATA,
   JEOPARDY_SET_SELECTED,
@@ -18,6 +19,11 @@ const initialState = {
 
 const reducer = (state, action) => {
   switch (action.type) {
+    case JEOPRADY_RESET_GAME_BOARD:
+      return {
+        ...state,
+        data: state.data.map((item) => ({ ...item, clicked: false })),
+      }
     case JEOPARDY_SET_CLICKED:
       return {
         ...state,
@@ -51,7 +57,7 @@ const JeopardyContext = ({ children }) => {
   )
 }
 
-const useStateValue = () => useContext(StateContext)
-const useDispatchValue = () => useContext(DispatchContext)
+const useState = () => useContext(StateContext)
+const useDispatch = () => useContext(DispatchContext)
 
-export { JeopardyContext, useStateValue, useDispatchValue }
+export { JeopardyContext, useState, useDispatch }
