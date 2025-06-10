@@ -32,7 +32,7 @@
 }
 
 .jeopardy-card {
-  @apply cursor-pointer grid h-screen overflow-x-scroll place-items-center p-16 w-screen;
+  @apply cursor-pointer grid h-screen overflow-x-scroll place-items-center px-48 py-16 w-screen;
   @apply font-jeopardy-card text-shadow-jeopardy-board justify-center leading-none text-balance text-center;
   align-items: center !important;
 }
