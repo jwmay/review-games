@@ -23,7 +23,8 @@ export default function JeopardyStartScreen({ onLoad, spreadsheetId }) {
           <div className='border-8 border-jeopardy-gold rounded-box p-16 cursor-pointer hover:bg-jeopardy-gold hover:text-white'>
             <FontAwesomeIcon className='mb-4' icon={faGoogleDrive} size='4x' />
             <h2 className='text-3xl font-jeopardy-card uppercase'>
-              Make a copy of the Google Sheets template file to start a new game
+              Make a copy of the Google Sheets template file to create a new
+              game
             </h2>
           </div>
         </a>
