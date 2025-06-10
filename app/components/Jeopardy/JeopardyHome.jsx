@@ -44,7 +44,7 @@ export default function JeopardyHome() {
   }
 
   return (
-    <div className='min-h-screen bg-jeopardy-blue'>
+    <div>
       <Navbar allowFullscreen menu={<JeopardyNavbarMenu />} title='Jeopardy' />
       {state.data.length === 0 ? (
         <JeopardyStartScreen

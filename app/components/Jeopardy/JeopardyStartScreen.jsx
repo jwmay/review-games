@@ -5,7 +5,7 @@ import { config } from '../../config'
 
 export default function JeopardyStartScreen({ onLoad, spreadsheetId }) {
   return (
-    <div className='text-center min-h-screen px-24 py-12'>
+    <div className='bg-jeopardy-blue min-h-screen px-24 py-12 text-center'>
       <h1 className='text-5xl font-bold font-jeopardy-card text-shadow-jeopardy-board uppercase my-8'>
         Get Started
       </h1>
