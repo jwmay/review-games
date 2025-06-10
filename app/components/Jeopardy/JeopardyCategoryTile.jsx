@@ -1,17 +1,12 @@
-import useFitText from 'use-fit-text'
+import { AutoTextSize } from 'auto-text-size'
 
 export default function JeopardyCategoryTile({ category }) {
-  const { fontSize, ref } = useFitText()
-
   return (
-    <div className='grid bg-jeopardy-blue uppercase mb-4'>
-      <div
-        className='place-self-center text-4xl text-shadow-jeopardy-board tracking-wider'
-        ref={ref}
-        style={{ fontSize }}
-      >
+    // <div className='bg-jeopardy-blue uppercase p-4 justify-center text-center items-center-force tracking-widest leading-none'>
+    <div className='jeopardy-board-tile'>
+      <AutoTextSize as='h2' maxFontSizePx={500} mode='box'>
         {category}
-      </div>
+      </AutoTextSize>
     </div>
   )
 }

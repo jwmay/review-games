@@ -1,7 +1,9 @@
+import { AutoTextSize } from 'auto-text-size'
+
 export default function JeopardyQuestionTile({ item, onClick }) {
   return (
     <div
-      className={`grid bg-jeopardy-blue text-jeopardy-gold cursor-pointer ${
+      className={`jeopardy-board-tile text-jeopardy-gold ${
         !item.clicked
           ? 'hover:scale-110 transition duration-150 ease-in-out'
           : ''
@@ -10,9 +12,9 @@ export default function JeopardyQuestionTile({ item, onClick }) {
       style={{ cursor: item.clicked ? 'not-allowed' : 'pointer' }}
     >
       {!item.clicked && (
-        <div className='place-self-center text-7xl text-shadow-jeopardy-board'>
+        <AutoTextSize as='h3' mode='box'>
           $ {item.amount}
-        </div>
+        </AutoTextSize>
       )}
     </div>
   )

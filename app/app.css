@@ -22,7 +22,12 @@
     system-ui, sans-serif;
   --font-jeopardy-card: 'ITC Korinna Normal', serif;
 
-  --text-shadow-jeopardy-board: 3px 3px 0px #000000;
+  --text-shadow-jeopardy-board: 5px 5px 0px #000000;
+}
+
+.jeopardy-board-tile {
+  @apply bg-jeopardy-blue font-jeopardy-board uppercase tracking-widest leading-none text-shadow-jeopardy-board p-4 justify-center text-center;
+  align-items: center !important;
 }
 
 .jeopardy-card > p > img {
