@@ -45,7 +45,7 @@ export default function JeopardyHome() {
 
   return (
     <div className='min-h-screen bg-jeopardy-blue'>
-      <Navbar menu={<JeopardyNavbarMenu />} title='Jeopardy' />
+      <Navbar allowFullscreen menu={<JeopardyNavbarMenu />} title='Jeopardy' />
       {state.data.length === 0 ? (
         <JeopardyStartScreen
           onLoad={handleSpreadsheetIdChange}

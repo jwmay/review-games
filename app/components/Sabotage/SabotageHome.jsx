@@ -52,6 +52,7 @@ export default function SabotageHome() {
   return (
     <div className='min-h-screen'>
       <Navbar
+        allowFullscreen
         menu={
           <SabotageNavbarMenu
             onColorsChange={handleColorsChange}
