@@ -142,7 +142,9 @@ export default function JeopardyFileInput({ initialValue, onLoad }) {
           </div>
         </div>
         <button
-          className='btn btn-accent join-item h-16 px-8'
+          className={`btn btn-accent join-item h-16 px-8 ${
+            isLoading || isValid ? 'animate-pulse hover:animate-none' : ''
+          }`}
           disabled={isLoading || !isValid}
           onClick={handleButtonClick}
         >
