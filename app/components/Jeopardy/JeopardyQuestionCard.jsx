@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import parse from 'html-react-parser'
 
+import { AutoTextSize } from 'auto-text-size'
+
 export default function JeopardyQuestionCard({ item, onClick }) {
   const [display, setDisplay] = useState('question')
 
@@ -12,15 +14,15 @@ export default function JeopardyQuestionCard({ item, onClick }) {
 
   return (
     <div
-      className='jeopardy-card h-screen grid place-items-center px-48 py-32 cursor-pointer'
+      className='jeopardy-card'
       onClick={handleClick}
       style={{
         color: display === 'answer' ? 'var(--color-jeopardy-gold)' : '',
       }}
     >
-      <p className='font-jeopardy-card text-shadow-jeopardy-board text-7xl text-center'>
+      <AutoTextSize as='p' maxFontSizePx={96} minFontSizePx={24} mode='box'>
         {display === 'question' ? parse(item.question) : parse(item.answer)}
-      </p>
+      </AutoTextSize>
     </div>
   )
 }

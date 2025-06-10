@@ -2,7 +2,7 @@
 @plugin 'daisyui';
 
 ////
-// Jeopardy-specific styles
+// Jeopardy-specific fonts and styles
 ////
 @font-face {
   font-family: 'ITC Korinna Normal';
@@ -26,12 +26,19 @@
 }
 
 .jeopardy-board-tile {
-  @apply bg-jeopardy-blue font-jeopardy-board uppercase tracking-widest leading-none text-shadow-jeopardy-board p-4 justify-center text-center;
+  @apply bg-jeopardy-blue justify-center p-6 text-center;
+  @apply font-jeopardy-board leading-none text-shadow-jeopardy-board tracking-widest uppercase;
+  align-items: center !important;
+}
+
+.jeopardy-card {
+  @apply cursor-pointer grid h-screen overflow-x-scroll place-items-center p-16 w-screen;
+  @apply font-jeopardy-card text-shadow-jeopardy-board justify-center leading-none text-balance text-center;
   align-items: center !important;
 }
 
 .jeopardy-card > p > img {
-  @apply mx-auto my-8 max-h-[50vh];
+  @apply mx-auto my-4 max-h-[50vh];
 }
 ////
 
