@@ -12,7 +12,7 @@ export default function JeopardyQuestionTile({ item, onClick }) {
       style={{ cursor: item.clicked ? 'not-allowed' : 'pointer' }}
     >
       {!item.clicked && (
-        <AutoTextSize as='h3' mode='box'>
+        <AutoTextSize as='h2' maxFontSizePx={500} mode='box'>
           $ {item.amount}
         </AutoTextSize>
       )}
