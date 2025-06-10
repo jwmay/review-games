@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlay } from '@fortawesome/free-solid-svg-icons'
 import { faGoogleDrive } from '@fortawesome/free-brands-svg-icons'
 import ErrorAlert from '../ErrorAlert'
 import { useGoogleSheetsUrl } from '../../hooks'
@@ -148,7 +149,9 @@ export default function JeopardyFileInput({ initialValue, onLoad }) {
           {isLoading ? (
             <span className='loading loading-infinity loading-xl text-accent'></span>
           ) : (
-            'Open'
+            <>
+              <FontAwesomeIcon size='xl' icon={faPlay} /> Play
+            </>
           )}
         </button>
       </div>
