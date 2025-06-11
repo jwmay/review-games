@@ -62,7 +62,7 @@ export default function Navbar({ allowFullscreen, menu, title }) {
               <div className='dropdown dropdown-end'>
                 <NavbarMenuButton />
                 <ul
-                  className='dropdown-content menu menu-lg bg-base-200 rounded-box z-1 mt-4 w-60 p-2 shadow-sm'
+                  className='dropdown-content menu menu-lg bg-base-200 rounded-box z-1 mt-4 min-w-60 p-2 shadow-sm'
                   tabIndex={0}
                 >
                   {menu}
