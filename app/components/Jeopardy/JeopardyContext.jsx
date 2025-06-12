@@ -8,7 +8,6 @@ import {
   JEOPARDY_SET_DATA,
   JEOPARDY_SET_GAME_STATUS,
   JEOPARDY_SET_SELECTED,
-  JEOPARDY_SET_SPREADSHEET_ID,
 } from '../../actionTypes'
 
 const StateContext = createContext()
@@ -18,7 +17,6 @@ const initialState = {
   data: { main: [], final: {} },
   selected: null,
   settings: { showAmount: false, showIntro: true },
-  spreadsheetId: '',
   status: {
     isBoardVisible: false,
     isFinal: false,
@@ -73,8 +71,6 @@ const reducer = (state, action) => {
       }
     case JEOPARDY_SET_SELECTED:
       return { ...state, selected: action.payload.selected }
-    case JEOPARDY_SET_SPREADSHEET_ID:
-      return { ...state, spreadsheetId: action.payload.spreadsheetId }
     default:
       return state
   }

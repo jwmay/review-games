@@ -5,10 +5,7 @@ import JeopardyFileInput from './JeopardyFileInput'
 import { useContextDispatch } from './JeopardyContext'
 import { config } from '../../config'
 
-import {
-  JEOPARDY_SET_DATA,
-  JEOPARDY_SET_SPREADSHEET_ID,
-} from '../../actionTypes'
+import { JEOPARDY_SET_DATA } from '../../actionTypes'
 
 export default function JeopardyStartScreen() {
   const dispatch = useContextDispatch()
@@ -21,7 +18,6 @@ export default function JeopardyStartScreen() {
 
   function handleDataLoad({ data, spreadsheetId }) {
     dispatch({ type: JEOPARDY_SET_DATA, payload: { data } })
-    dispatch({ type: JEOPARDY_SET_SPREADSHEET_ID, payload: { spreadsheetId } })
 
     // Put the spreadsheetId in the url as a search param to make easy sharing of games
     setSearchParams((searchParams) => {
