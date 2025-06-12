@@ -1,5 +1,6 @@
 export const config = {
   jeopardy: {
+    maxQuestions: 6 * 5,
     sheet: {
       dims: { cols: 4, rows: 32 },
       name: 'DO_NOT_EDIT_OR_DELETE',

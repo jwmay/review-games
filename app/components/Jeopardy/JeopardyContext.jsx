@@ -21,8 +21,9 @@ const initialState = {
   spreadsheetId: '',
   status: {
     isBoardVisible: false,
-    isIntroDone: false,
     isFinal: false,
+    isIntroDone: false,
+    numClicked: 0,
   },
 }
 

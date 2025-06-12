@@ -10,6 +10,7 @@ import { useContextState, useContextDispatch } from './JeopardyContext'
 import {
   JEOPARDY_SET_CLICKED,
   JEOPARDY_SET_DATA,
+  JEOPARDY_SET_GAME_STATUS,
   JEOPARDY_SET_SELECTED,
   JEOPARDY_SET_SPREADSHEET_ID,
 } from '../../actionTypes'
@@ -33,6 +34,12 @@ export default function JeopardyHome() {
   function handleQuestionTileClick(item) {
     dispatch({ type: JEOPARDY_SET_CLICKED, payload: { id: item.id } })
     dispatch({ type: JEOPARDY_SET_SELECTED, payload: { selected: item } })
+    if (!item.clicked) {
+      dispatch({
+        type: JEOPARDY_SET_GAME_STATUS,
+        payload: { status: 'numClicked', value: state.status.numClicked + 1 },
+      })
+    }
   }
 
   function handleSpreadsheetIdChange({ data, spreadsheetId }) {

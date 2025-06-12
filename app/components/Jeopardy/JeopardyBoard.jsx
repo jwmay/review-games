@@ -3,6 +3,7 @@ import JeopardyCategoryTile from './JeopardyCategoryTile'
 import JeopardyQuestionTile from './JeopardyQuestionTile'
 import { useContextState, useContextDispatch } from './JeopardyContext'
 import { JEOPARDY_SET_GAME_STATUS } from '../../actionTypes'
+import { config } from '../../config'
 
 export default function JeopardyBoard({ data, onClick }) {
   const state = useContextState()
@@ -30,6 +31,16 @@ export default function JeopardyBoard({ data, onClick }) {
 
     return () => clearTimeout(timer) // cleanup if unmounted early
   }, [])
+
+  useEffect(() => {
+    // Set 'isFinal' flag once all questions have been selected
+    if (state.status.numClicked === config.jeopardy.maxQuestions) {
+      dispatch({
+        type: JEOPARDY_SET_GAME_STATUS,
+        payload: { status: 'isFinal', value: true },
+      })
+    }
+  }, [state.status.numClicked])
 
   return (
     <div
