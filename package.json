@@ -1,5 +1,6 @@
 {
   "name": "review-games",
+  "homepage": "https://jwmay.github.io/review-games/",
   "private": true,
   "type": "module",
   "scripts": {
