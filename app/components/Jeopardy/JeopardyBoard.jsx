@@ -5,7 +5,7 @@ import { useContextState, useContextDispatch } from './JeopardyContext'
 import { JEOPARDY_SET_GAME_STATUS } from '../../actionTypes'
 import { config } from '../../config'
 
-export default function JeopardyBoard({ data, onClick }) {
+export default function JeopardyBoard({ data }) {
   const state = useContextState()
   const dispatch = useContextDispatch()
 
@@ -58,11 +58,7 @@ export default function JeopardyBoard({ data, onClick }) {
         />
       ))}
       {data.map((item) => (
-        <JeopardyQuestionTile
-          item={item}
-          key={item.id}
-          onClick={() => onClick(item)}
-        />
+        <JeopardyQuestionTile item={item} key={item.id} />
       ))}
     </div>
   )

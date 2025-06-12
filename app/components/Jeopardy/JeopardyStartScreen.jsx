@@ -1,9 +1,35 @@
+import { useSearchParams } from 'react-router'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGoogleDrive } from '@fortawesome/free-brands-svg-icons'
 import JeopardyFileInput from './JeopardyFileInput'
+import { useContextDispatch } from './JeopardyContext'
 import { config } from '../../config'
 
-export default function JeopardyStartScreen({ onLoad, spreadsheetId }) {
+import {
+  JEOPARDY_SET_DATA,
+  JEOPARDY_SET_SPREADSHEET_ID,
+} from '../../actionTypes'
+
+export default function JeopardyStartScreen() {
+  const dispatch = useContextDispatch()
+
+  const [searchParams, setSearchParams] = useSearchParams({
+    spreadsheetId: '',
+  })
+
+  const spreadsheetId = searchParams.get('spreadsheetId')
+
+  function handleDataLoad({ data, spreadsheetId }) {
+    dispatch({ type: JEOPARDY_SET_DATA, payload: { data } })
+    dispatch({ type: JEOPARDY_SET_SPREADSHEET_ID, payload: { spreadsheetId } })
+
+    // Put the spreadsheetId in the url as a search param to make easy sharing of games
+    setSearchParams((searchParams) => {
+      searchParams.set('spreadsheetId', spreadsheetId)
+      return searchParams
+    })
+  }
+
   return (
     <div className='bg-jeopardy-blue min-h-screen px-24 py-12 text-center'>
       <h1 className='text-5xl font-bold font-jeopardy-card text-shadow-jeopardy-board uppercase my-8'>
@@ -13,7 +39,10 @@ export default function JeopardyStartScreen({ onLoad, spreadsheetId }) {
         <h2 className='text-3xl font-jeopardy-card uppercase mb-4'>
           Enter a Google Sheets file url
         </h2>
-        <JeopardyFileInput initialValue={spreadsheetId} onLoad={onLoad} />
+        <JeopardyFileInput
+          initialValue={spreadsheetId}
+          onLoad={handleDataLoad}
+        />
       </div>
       <h2 className='text-6xl font-jeopardy-card text-shadow-jeopardy-board uppercase my-10 text-jeopardy-gold'>
         or

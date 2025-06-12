@@ -1,16 +1,22 @@
 import { useState } from 'react'
 import { AutoTextSize } from 'auto-text-size'
 import parse from 'html-react-parser'
-import { useContextState } from './JeopardyContext'
+import { useContextDispatch, useContextState } from './JeopardyContext'
 
-export default function JeopardyQuestionCard({ item, onClick }) {
-  const state = useContextState()
+import { JEOPARDY_SET_SELECTED } from '../../actionTypes'
+
+export default function JeopardyQuestionCard({ item }) {
   const [display, setDisplay] = useState('question')
+
+  const state = useContextState()
+  const dispatch = useContextDispatch()
 
   function handleClick() {
     const newDisplay = display === 'question' ? 'answer' : null
     setDisplay(newDisplay)
-    onClick(newDisplay)
+    if (!newDisplay) {
+      dispatch({ type: JEOPARDY_SET_SELECTED, payload: { selected: null } })
+    }
   }
 
   return (
