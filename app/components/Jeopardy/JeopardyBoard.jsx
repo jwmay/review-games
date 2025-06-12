@@ -9,14 +9,26 @@ export default function JeopardyBoard({ data, onClick }) {
   const dispatch = useContextDispatch()
 
   useEffect(() => {
-    // if the user has opted out of the intro, then set game status 'isStarted' to true when the board loads,
-    // otherwise, this property is set when the intro completes
-    if (!state.settings.showIntro) {
-      dispatch({
-        type: JEOPARDY_SET_GAME_STATUS,
-        payload: { status: 'isStarted', value: true },
-      })
-    }
+    // Set game status 'isBoardVisible' after category tile animations are complete, if intro is shown
+    const timer = setTimeout(
+      () => {
+        dispatch({
+          type: JEOPARDY_SET_GAME_STATUS,
+          payload: { status: 'isBoardVisible', value: true },
+        })
+
+        // If intro was not shown per user settings, mark it as shown
+        if (!state.settings.showIntro) {
+          dispatch({
+            type: JEOPARDY_SET_GAME_STATUS,
+            payload: { status: 'isIntroDone', value: true },
+          })
+        }
+      },
+      state.settings.showIntro ? 15000 : 0
+    ) // 15 seconds or 0 seconds
+
+    return () => clearTimeout(timer) // cleanup if unmounted early
   }, [])
 
   return (

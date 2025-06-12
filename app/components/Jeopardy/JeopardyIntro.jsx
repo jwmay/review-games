@@ -5,12 +5,12 @@ import { JEOPARDY_SET_GAME_STATUS } from '../../actionTypes'
 export default function JeopardyIntro() {
   const dispatch = useContextDispatch()
 
-  // Set game status to 'isStarted' after animations are complete to show the game board
+  // Set game status 'isIntroDone' after animations are complete
   useEffect(() => {
     const timer = setTimeout(() => {
       dispatch({
         type: JEOPARDY_SET_GAME_STATUS,
-        payload: { status: 'isStarted', value: true },
+        payload: { status: 'isIntroDone', value: true },
       })
     }, 13000) // 13 seconds
 

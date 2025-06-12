@@ -20,7 +20,8 @@ const initialState = {
   settings: { showAmount: false, showIntro: true },
   spreadsheetId: '',
   status: {
-    isStarted: false,
+    isBoardVisible: false,
+    isIntroDone: false,
     isFinal: false,
   },
 }
@@ -36,7 +37,6 @@ const reducer = (state, action) => {
           ...state.data,
           main: state.data.main.map((item) => ({ ...item, clicked: false })),
         },
-        isStarted: false,
       }
     case JEOPARDY_SAVE_SETTINGS:
       return {

@@ -53,7 +53,7 @@ export default function JeopardyHome() {
         spreadsheetId={spreadsheetId}
       />
     )
-  } else if (!state.status.isStarted && state.settings.showIntro) {
+  } else if (!state.status.isIntroDone && state.settings.showIntro) {
     // show intro animations and music if user settings allow it
     display = <JeopardyIntro />
   } else if (!state.selected) {
