@@ -31,7 +31,7 @@ export default function Navbar({ allowFullscreen, menu, title }) {
     <>
       {isFullscreen ? (
         <button
-          className='btn btn-circle btn-ghost btn-lg absolute right-0 m-4 opacity-25 hover:opacity-100'
+          className='btn btn-circle btn-ghost btn-lg absolute right-0 m-4 opacity-25 hover:opacity-100 z-1000'
           onClick={handleFullscreenToggleClick}
         >
           <FontAwesomeIcon className='fa-xl' icon={faCompress} />
