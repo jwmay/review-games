@@ -1,13 +1,13 @@
 @import 'tailwindcss';
 @plugin 'daisyui';
 
-// @todo: remove this or set site-wide font?
+/* @todo: remove this or set site-wide font? */
 @theme {
   --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
-// @todo: modify or remove this (may or may not support dark/light modes, just do dark?)
+/* @todo: modify or remove this (may or may not support dark/light modes, just do dark?) */
 html,
 body {
   @apply bg-white dark:bg-gray-950;
@@ -16,11 +16,8 @@ body {
     color-scheme: dark;
   }
 }
-//
 
-////
-// Jeopardy-specific fonts and styles
-////
+/* Jeopardy-specific fonts and styles */
 @font-face {
   font-family: 'ITC Korinna Normal';
   src: url('/fonts/ITC_Korinna_Normal.ttf') format('truetype');
@@ -57,4 +54,69 @@ body {
 .jeopardy-card > p > img {
   @apply mx-auto my-4 max-h-[50vh];
 }
-////
+
+/* Jeopardy Animations */
+.animate-in-from-top {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  opacity: 0;
+  transform: translate(-50%, -200%) scale(0.5);
+  animation: flyAtYouFromTop 3s ease-in-out forwards;
+}
+
+.animate-in-from-top-first {
+  animation-delay: 1s;
+  --scale-to: 4;
+}
+
+.animate-in-from-top-second {
+  animation-delay: 3.5s;
+  --scale-to: 4;
+}
+
+.animate-in-from-top-third {
+  animation-delay: 6s;
+  animation-duration: 5s;
+  --scale-to: 0.8;
+}
+
+@keyframes flyAtYouFromTop {
+  0% {
+    transform: translate(-50%, -200%) scale(0.5);
+    opacity: 0;
+  }
+  35% {
+    transform: translate(-50%, -50%) scale(var(--scale-to));
+    opacity: 1;
+  }
+  65% {
+    transform: translate(-50%, -50%) scale(var(--scale-to));
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, 0%) scale(6);
+    opacity: 0;
+    display: none;
+  }
+}
+
+.animate-background-fade-in-blue-fade-out {
+  animation: backgroundFadeToBlueFadeOut 13s ease-in-out 0s forwards;
+  background-color: var(--color-black);
+}
+
+@keyframes backgroundFadeToBlueFadeOut {
+  0% {
+    background-color: var(--color-black);
+  }
+  7.69% {
+    background-color: var(--color-jeopardy-blue);
+  }
+  84.61% {
+    background-color: var(--color-jeopardy-blue);
+  }
+  100% {
+    background-color: transparent;
+  }
+}

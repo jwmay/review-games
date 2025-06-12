@@ -1,11 +1,12 @@
 import { useSearchParams } from 'react-router'
 import Navbar from '../Navbar'
-import JeopardyNavbarMenu from './JeopardyNavbarMenu'
-import JeopardyStartScreen from './JeopardyStartScreen'
-import JeopardyQuestionCard from './JeopardyQuestionCard'
 import JeopardyBoard from './JeopardyBoard'
+import JeopardyIntro from './JeopardyIntro'
+import JeopardyNavbarMenu from './JeopardyNavbarMenu'
+import JeopardyQuestionCard from './JeopardyQuestionCard'
+import JeopardyStartScreen from './JeopardyStartScreen'
 
-import { useState, useDispatch } from './JeopardyContext'
+import { useContextState, useContextDispatch } from './JeopardyContext'
 import {
   JEOPARDY_SET_CLICKED,
   JEOPARDY_SET_DATA,
@@ -14,8 +15,8 @@ import {
 } from '../../actionTypes'
 
 export default function JeopardyHome() {
-  const state = useState()
-  const dispatch = useDispatch()
+  const state = useContextState()
+  const dispatch = useContextDispatch()
 
   const [searchParams, setSearchParams] = useSearchParams({
     spreadsheetId: '',
@@ -43,22 +44,37 @@ export default function JeopardyHome() {
     dispatch({ type: JEOPARDY_SET_SPREADSHEET_ID, payload: { spreadsheetId } })
   }
 
+  let display
+  if (state.data.main.length === 0) {
+    // no data, display start screen with url input
+    display = (
+      <JeopardyStartScreen
+        onLoad={handleSpreadsheetIdChange}
+        spreadsheetId={spreadsheetId}
+      />
+    )
+  } else if (!state.status.isStarted && state.settings.showIntro) {
+    // show intro animations and music if user settings allow it
+    display = <JeopardyIntro />
+  } else if (!state.selected) {
+    // data but no question selected, display full board
+    display = (
+      <JeopardyBoard data={state.data.main} onClick={handleQuestionTileClick} />
+    )
+  } else {
+    // data and question selected, show question then answer
+    display = (
+      <JeopardyQuestionCard
+        item={state.selected}
+        onClick={handleQuestionCardClick}
+      />
+    )
+  }
+
   return (
     <div>
       <Navbar allowFullscreen menu={<JeopardyNavbarMenu />} title='Jeopardy' />
-      {state.data.length === 0 ? (
-        <JeopardyStartScreen
-          onLoad={handleSpreadsheetIdChange}
-          spreadsheetId={spreadsheetId}
-        />
-      ) : !state.selected ? (
-        <JeopardyBoard data={state.data} onClick={handleQuestionTileClick} />
-      ) : (
-        <JeopardyQuestionCard
-          item={state.selected}
-          onClick={handleQuestionCardClick}
-        />
-      )}
+      {display}
     </div>
   )
 }

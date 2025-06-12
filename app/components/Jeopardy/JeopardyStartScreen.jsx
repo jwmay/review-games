@@ -18,7 +18,7 @@ export default function JeopardyStartScreen({ onLoad, spreadsheetId }) {
       <h2 className='text-6xl font-jeopardy-card text-shadow-jeopardy-board uppercase my-10 text-jeopardy-gold'>
         or
       </h2>
-      <div className='w-1/3 mx-auto'>
+      <div className='w-2/5 mx-auto'>
         <a href={config.jeopardy.templateUrl} target='_blank'>
           <div className='border-8 border-jeopardy-gold rounded-box p-16 cursor-pointer hover:bg-jeopardy-gold hover:text-white'>
             <FontAwesomeIcon className='mb-4' icon={faGoogleDrive} size='4x' />

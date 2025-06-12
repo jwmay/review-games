@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlay } from '@fortawesome/free-solid-svg-icons'
+import { faPlay, faXmark } from '@fortawesome/free-solid-svg-icons'
 import { faGoogleDrive } from '@fortawesome/free-brands-svg-icons'
 import ErrorAlert from '../ErrorAlert'
 import { useGoogleSheetsUrl } from '../../hooks'
@@ -33,12 +33,18 @@ export default function JeopardyFileInput({ initialValue, onLoad }) {
     match ? setIsValid(true) : setIsValid(false)
   }
 
-  async function handleButtonClick() {
+  function handleClearInputButtonClick() {
+    setError(null)
+    setIsValid(false)
+    setSpreadsheetUrl('')
+  }
+
+  async function handlePlayButtonClick() {
     setError(null)
     setIsLoading(true)
 
     const spreadsheetId = getSpreadsheetId(spreadsheetUrl)
-    const sheetName = config.jeopardy.sheetName
+    const sheetName = config.jeopardy.sheet.name
     const apiKey = import.meta.env.VITE_GOOGLE_SHEETS_API_KEY
 
     const apiUrl = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${sheetName}?key=${apiKey}`
@@ -52,7 +58,10 @@ export default function JeopardyFileInput({ initialValue, onLoad }) {
       })
       .then((data) => {
         // Validate the shape of the data file
-        if (data.values.length !== 31 || data.values[0].length !== 4) {
+        if (
+          data.values.length !== config.jeopardy.sheet.dims.rows ||
+          data.values[0].length !== config.jeopardy.sheet.dims.cols
+        ) {
           throw new Error('499')
         }
 
@@ -73,13 +82,15 @@ export default function JeopardyFileInput({ initialValue, onLoad }) {
           })
           .filter((el) => el !== null)
 
-        onLoad({ data: structuredData, spreadsheetId })
+        const final = structuredData.pop() // Final Jeopardy is stored in the last row
+
+        onLoad({ data: { main: structuredData, final }, spreadsheetId })
         setIsLoading(false)
       })
       .catch((error) => {
         if (error.message === '400') {
           setError({
-            message: `Cannot find a sheet titled "${config.jeopardy.sheetName}" in the template file.`,
+            message: `Cannot find a sheet titled "${config.jeopardy.sheet.name}" in the template file.`,
             status: 400,
           })
         } else if (error.message === '403') {
@@ -118,14 +129,14 @@ export default function JeopardyFileInput({ initialValue, onLoad }) {
     <div>
       <div className='join w-full'>
         <div className='w-full'>
-          <label className='input validator join-item w-full h-16'>
+          <label className='input validator join-item w-full h-16 relative'>
             <FontAwesomeIcon
               className='opacity-50 px-2'
               icon={faGoogleDrive}
               size='xl'
             />
             <input
-              className='input-xl'
+              className='input-xl pr-[64px]'
               disabled={isLoading}
               onChange={handleInputChange}
               pattern='https?://docs.google.com/spreadsheets/d/.+'
@@ -135,6 +146,14 @@ export default function JeopardyFileInput({ initialValue, onLoad }) {
               type='url'
               value={spreadsheetUrl}
             />
+            <button
+              className='btn btn-circle btn-ghost btn-warning absolute right-4'
+              disabled={!spreadsheetUrl}
+              onClick={handleClearInputButtonClick}
+              title='Clear url'
+            >
+              <FontAwesomeIcon icon={faXmark} size='xl' />
+            </button>
           </label>
           <div className='validator-hint hidden'>
             {`Must be a valid Google Sheets URL
@@ -146,7 +165,7 @@ export default function JeopardyFileInput({ initialValue, onLoad }) {
             isLoading || isValid ? 'animate-pulse hover:animate-none' : ''
           }`}
           disabled={isLoading || !isValid}
-          onClick={handleButtonClick}
+          onClick={handlePlayButtonClick}
         >
           {isLoading ? (
             <span className='loading loading-infinity loading-xl text-accent'></span>

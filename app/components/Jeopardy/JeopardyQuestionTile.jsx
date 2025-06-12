@@ -1,21 +1,20 @@
+import { motion } from 'motion/react'
 import { AutoTextSize } from 'auto-text-size'
 
 export default function JeopardyQuestionTile({ item, onClick }) {
   return (
-    <div
-      className={`jeopardy-board-tile text-jeopardy-gold ${
-        !item.clicked
-          ? 'hover:scale-110 transition duration-150 ease-in-out'
-          : ''
-      }`}
+    <motion.div
+      className='jeopardy-board-tile text-jeopardy-gold'
       onClick={() => onClick(item)}
       style={{ cursor: item.clicked ? 'not-allowed' : 'pointer' }}
+      whileHover={item.clicked ? {} : { scale: 1.1 }}
+      whileTap={item.clicked ? {} : { scale: 0.95 }}
     >
       {!item.clicked && (
         <AutoTextSize as='h2' maxFontSizePx={500} mode='box'>
           $ {item.amount}
         </AutoTextSize>
       )}
-    </div>
+    </motion.div>
   )
 }

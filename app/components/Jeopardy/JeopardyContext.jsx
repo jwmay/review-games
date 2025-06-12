@@ -3,8 +3,10 @@ import { createContext, useContext, useReducer } from 'react'
 import {
   JEOPRADY_LOAD_NEW_SPREADSHEET,
   JEOPRADY_RESET_GAME_BOARD,
+  JEOPARDY_SAVE_SETTINGS,
   JEOPARDY_SET_CLICKED,
   JEOPARDY_SET_DATA,
+  JEOPARDY_SET_GAME_STATUS,
   JEOPARDY_SET_SELECTED,
   JEOPARDY_SET_SPREADSHEET_ID,
 } from '../../actionTypes'
@@ -13,33 +15,61 @@ const StateContext = createContext()
 const DispatchContext = createContext()
 
 const initialState = {
-  data: [],
+  data: { main: [], final: {} },
   selected: null,
+  settings: { showAmount: false, showIntro: true },
   spreadsheetId: '',
+  status: {
+    isStarted: false,
+    isFinal: false,
+  },
 }
 
 const reducer = (state, action) => {
   switch (action.type) {
     case JEOPRADY_LOAD_NEW_SPREADSHEET:
-      return initialState
+      return { ...initialState, settings: { ...state.settings } }
     case JEOPRADY_RESET_GAME_BOARD:
       return {
         ...state,
-        data: state.data.map((item) => ({ ...item, clicked: false })),
+        data: {
+          ...state.data,
+          main: state.data.main.map((item) => ({ ...item, clicked: false })),
+        },
+        isStarted: false,
+      }
+    case JEOPARDY_SAVE_SETTINGS:
+      return {
+        ...state,
+        settings: {
+          ...state.settings,
+          [action.payload.setting]: action.payload.value,
+        },
       }
     case JEOPARDY_SET_CLICKED:
       return {
         ...state,
-        data: state.data.map((item) => {
-          if (item.id === action.payload.id) {
-            return { ...item, clicked: true }
-          } else {
-            return item
-          }
-        }),
+        data: {
+          ...state.data,
+          main: state.data.main.map((item) => {
+            if (item.id === action.payload.id) {
+              return { ...item, clicked: true }
+            } else {
+              return item
+            }
+          }),
+        },
       }
     case JEOPARDY_SET_DATA:
       return { ...state, data: action.payload.data }
+    case JEOPARDY_SET_GAME_STATUS:
+      return {
+        ...state,
+        status: {
+          ...state.status,
+          [action.payload.status]: action.payload.value,
+        },
+      }
     case JEOPARDY_SET_SELECTED:
       return { ...state, selected: action.payload.selected }
     case JEOPARDY_SET_SPREADSHEET_ID:
@@ -60,7 +90,7 @@ const JeopardyContext = ({ children }) => {
   )
 }
 
-const useState = () => useContext(StateContext)
-const useDispatch = () => useContext(DispatchContext)
+const useContextState = () => useContext(StateContext)
+const useContextDispatch = () => useContext(DispatchContext)
 
-export { JeopardyContext, useState, useDispatch }
+export { JeopardyContext, useContextState, useContextDispatch }

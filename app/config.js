@@ -1,6 +1,9 @@
 export const config = {
   jeopardy: {
-    sheetName: 'DO_NOT_EDIT_OR_DELETE',
+    sheet: {
+      dims: { cols: 4, rows: 32 },
+      name: 'DO_NOT_EDIT_OR_DELETE',
+    },
     templateUrl:
       'https://docs.google.com/spreadsheets/d/1npHrnbEenbTDgM7WkvO7adLpbTczJXKAt5bFt-0u-JQ/copy',
   },
