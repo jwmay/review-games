@@ -1,4 +1,5 @@
 import { useSearchParams } from 'react-router'
+import { motion } from 'motion/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGoogleDrive } from '@fortawesome/free-brands-svg-icons'
 import JeopardyFileInput from './JeopardyFileInput'
@@ -45,13 +46,17 @@ export default function JeopardyStartScreen() {
       </h2>
       <div className='w-2/5 mx-auto'>
         <a href={config.jeopardy.templateUrl} target='_blank'>
-          <div className='border-8 border-jeopardy-gold rounded-box p-16 cursor-pointer hover:bg-jeopardy-gold hover:text-white'>
+          <motion.div
+            className='border-8 border-jeopardy-gold rounded-box p-16 cursor-pointer hover:bg-jeopardy-gold hover:text-white'
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+          >
             <FontAwesomeIcon className='mb-4' icon={faGoogleDrive} size='4x' />
             <h2 className='text-3xl font-jeopardy-card uppercase'>
               Make a copy of the Google Sheets template file to create a new
               game
             </h2>
-          </div>
+          </motion.div>
         </a>
       </div>
     </div>
