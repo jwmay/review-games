@@ -37,6 +37,7 @@ const reducer = (state, action) => {
           ...state.data,
           main: state.data.main.map((item) => ({ ...item, clicked: false })),
         },
+        status: { ...state.status, isFinal: false, numClicked: 0 },
       }
     case JEOPARDY_SAVE_SETTINGS:
       return {
