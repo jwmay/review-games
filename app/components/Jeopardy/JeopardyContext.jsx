@@ -19,6 +19,7 @@ const initialState = {
   settings: { showAmount: false, showIntro: true },
   status: {
     isBoardVisible: false,
+    isDataLoaded: false,
     isFinal: false,
     isIntroDone: false,
     numClicked: 0,
@@ -60,7 +61,11 @@ const reducer = (state, action) => {
         },
       }
     case JEOPARDY_SET_DATA:
-      return { ...state, data: action.payload.data }
+      return {
+        ...state,
+        data: action.payload.data,
+        status: { ...state.status, isDataLoaded: true },
+      }
     case JEOPARDY_SET_GAME_STATUS:
       return {
         ...state,
