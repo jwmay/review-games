@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { AutoTextSize } from 'auto-text-size'
 import parse from 'html-react-parser'
+import AudioPlayer from '../AudioPlayer'
 import { useContextState } from './JeopardyContext'
 
 const VIEWS = {
@@ -77,6 +78,9 @@ export default function JeopardyFinalCard() {
       }}
     >
       {display}
+      {view === VIEWS.QUESTION && (
+        <AudioPlayer autoplay hidden src='audio/jeopardy-think-music.mp3' />
+      )}
     </div>
   )
 }
