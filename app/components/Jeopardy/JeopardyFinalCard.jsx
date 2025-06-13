@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { AutoTextSize } from 'auto-text-size'
 import parse from 'html-react-parser'
-import AudioPlayer from '../AudioPlayer'
+import { useAudioPlayer } from 'react-use-audio-player'
 import { useContextState } from './JeopardyContext'
 
 const VIEWS = {
@@ -13,6 +13,13 @@ const VIEWS = {
 
 export default function JeopardyFinalCard() {
   const [view, setView] = useState(VIEWS.TITLE_CARD)
+
+  const { isPlaying, play, stop } = useAudioPlayer(
+    'audio/jeopardy-think-music.mp3',
+    {
+      autoplay: false,
+    }
+  )
 
   const state = useContextState()
 
@@ -68,6 +75,15 @@ export default function JeopardyFinalCard() {
       display = <div className='text-9xl'>GAME OVER</div>
   }
 
+  // Play think music when the question is shown
+  useEffect(() => {
+    if (view === VIEWS.QUESTION && !isPlaying) {
+      play()
+    } else {
+      stop()
+    }
+  }, [view])
+
   return (
     <div
       className='jeopardy-card'
@@ -78,9 +94,6 @@ export default function JeopardyFinalCard() {
       }}
     >
       {display}
-      {view === VIEWS.QUESTION && (
-        <AudioPlayer autoplay hidden src='audio/jeopardy-think-music.mp3' />
-      )}
     </div>
   )
 }

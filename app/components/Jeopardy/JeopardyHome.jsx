@@ -1,3 +1,5 @@
+import { useEffect } from 'react'
+import { useAudioPlayer } from 'react-use-audio-player'
 import Navbar from '../Navbar'
 import JeopardyBoard from './JeopardyBoard'
 import JeopardyFinalCard from './JeopardyFinalCard'
@@ -9,6 +11,31 @@ import { useContextState } from './JeopardyContext'
 
 export default function JeopardyHome() {
   const state = useContextState()
+
+  const { isPlaying, play, stop } = useAudioPlayer(
+    'audio/jeopardy-intro-music.mp3',
+    { autoplay: false }
+  )
+
+  useEffect(() => {
+    if (
+      state.status.isDataLoaded &&
+      !state.status.isIntroDone &&
+      state.settings.showIntro &&
+      !isPlaying
+    ) {
+      play()
+    } else if (
+      (!state.settings.showIntro || !state.status.isDataLoaded) &&
+      isPlaying
+    ) {
+      stop()
+    }
+  }, [
+    state.settings.showIntro,
+    state.status.isDataLoaded,
+    state.status.isIntroDone,
+  ])
 
   let display
   if (!state.status.isDataLoaded) {

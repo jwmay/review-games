@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
-import AudioPlayer from '../AudioPlayer'
 import { useContextDispatch } from './JeopardyContext'
+
 import { JEOPARDY_SET_GAME_STATUS } from '../../actionTypes'
 
 export default function JeopardyIntro() {
@@ -15,7 +15,7 @@ export default function JeopardyIntro() {
       })
     }, 7000) // 7 seconds
 
-    return () => clearTimeout(timer) // cleanup if unmounted early
+    return () => clearTimeout(timer)
   }, [])
 
   return (
@@ -28,7 +28,6 @@ export default function JeopardyIntro() {
           src='images/game-tile-jeopardy.jpg'
         />
       </div>
-      <AudioPlayer autoplay hidden src='audio/jeopardy-intro-music.mp3' />
     </main>
   )
 }
