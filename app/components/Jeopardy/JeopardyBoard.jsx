@@ -30,7 +30,7 @@ export default function JeopardyBoard({ data }) {
       state.settings.showIntro ? 15000 : 0
     ) // 15 seconds or 0 seconds
 
-    return () => clearTimeout(timer) // cleanup if unmounted early
+    return () => clearTimeout(timer)
   }, [])
 
   useEffect(() => {
