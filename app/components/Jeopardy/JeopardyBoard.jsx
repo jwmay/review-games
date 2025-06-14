@@ -20,14 +20,14 @@ export default function JeopardyBoard({ data }) {
         })
 
         // If intro was not shown per user settings, mark it as shown
-        if (!state.settings.showIntro) {
+        if (state.settings.studyMode) {
           dispatch({
             type: JEOPARDY_SET_GAME_STATUS,
             payload: { status: 'isIntroDone', value: true },
           })
         }
       },
-      state.settings.showIntro ? 15000 : 0
+      !state.settings.studyMode ? 15000 : 0
     ) // 15 seconds or 0 seconds
 
     return () => clearTimeout(timer)
@@ -46,7 +46,7 @@ export default function JeopardyBoard({ data }) {
   return (
     <div
       className={`${
-        state.settings.showIntro && !state.status.isBoardVisible
+        !state.settings.studyMode && !state.status.isBoardVisible
           ? 'animate-zoom-in'
           : ''
       } bg-black h-screen grid grid-cols-[repeat(6,calc(95vw/6))] grid-rows-[repeat(6,calc(95vh/6))] gap-x-[1vw] gap-y-[1vh]`}

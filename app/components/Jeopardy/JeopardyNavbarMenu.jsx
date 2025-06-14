@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import { useContextState, useContextDispatch } from './JeopardyContext'
 
 import {
@@ -39,23 +41,26 @@ export default function JeopardyNavbarMenu() {
       <li className='py-2'>
         <label className='label'>
           <input
-            checked={state.settings.showIntro}
-            className='toggle toggle-sm toggle-warning'
-            onChange={() => handleSettingButtonClick('showIntro')}
-            type='checkbox'
-          />
-          Show intro when game starts
-        </label>
-      </li>
-      <li className='py-2'>
-        <label className='label'>
-          <input
             checked={state.settings.showAmount}
             className='toggle toggle-sm toggle-warning'
             onChange={() => handleSettingButtonClick('showAmount')}
             type='checkbox'
           />
           Show amount with question
+        </label>
+      </li>
+      <li className='py-2'>
+        <label className='label'>
+          <input
+            checked={state.settings.studyMode}
+            className='toggle toggle-sm toggle-warning'
+            onChange={() => handleSettingButtonClick('studyMode')}
+            type='checkbox'
+          />
+          Study mode
+          <div className='tooltip' data-tip='Disables animations and sounds'>
+            <FontAwesomeIcon icon={faInfoCircle} />
+          </div>
         </label>
       </li>
     </>

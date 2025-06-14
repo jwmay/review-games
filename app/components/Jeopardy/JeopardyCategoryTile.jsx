@@ -9,7 +9,7 @@ export default function JeopardyCategoryTile({ category, id }) {
       <AutoTextSize
         as='h2'
         className={
-          state.settings.showIntro && !state.status.isBoardVisible
+          !state.settings.studyMode && !state.status.isBoardVisible
             ? 'animate-zoom-in'
             : ''
         }

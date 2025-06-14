@@ -21,18 +21,18 @@ export default function JeopardyHome() {
     if (
       state.status.isDataLoaded &&
       !state.status.isIntroDone &&
-      state.settings.showIntro &&
+      !state.settings.studyMode &&
       !isPlaying
     ) {
       play()
     } else if (
-      (!state.settings.showIntro || !state.status.isDataLoaded) &&
+      (state.settings.studyMode || !state.status.isDataLoaded) &&
       isPlaying
     ) {
       stop()
     }
   }, [
-    state.settings.showIntro,
+    state.settings.studyMode,
     state.status.isDataLoaded,
     state.status.isIntroDone,
   ])
@@ -41,7 +41,7 @@ export default function JeopardyHome() {
   if (!state.status.isDataLoaded) {
     // no data, display start screen with url input
     display = <JeopardyStartScreen />
-  } else if (!state.status.isIntroDone && state.settings.showIntro) {
+  } else if (!state.status.isIntroDone && !state.settings.studyMode) {
     // show intro animations and music if user settings allow it
     display = <JeopardyIntro />
   } else if (state.status.isFinal) {

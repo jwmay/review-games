@@ -16,7 +16,7 @@ const DispatchContext = createContext()
 const initialState = {
   data: { main: [], final: {} },
   selected: null,
-  settings: { showAmount: false, showIntro: true },
+  settings: { showAmount: false, studyMode: false },
   status: {
     isBoardVisible: false,
     isDataLoaded: false,
