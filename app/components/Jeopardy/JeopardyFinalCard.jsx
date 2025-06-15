@@ -48,11 +48,11 @@ export default function JeopardyFinalCard() {
       break
     case VIEWS.CATEGORY:
       display = (
-        <div className='flex flex-col h-full w-full justify-center items-center'>
-          <h1 className='font-jeopardy-card text-6xl text-jeopardy-gold uppercase'>
+        <div className='flex flex-col h-full w-full justify-start items-center'>
+          <h1 className='font-jeopardy-card mt-16 text-6xl text-jeopardy-gold uppercase'>
             Final Jeopardy!
           </h1>
-          <h2 className='font-jeopardy-card mt-2 mb-32 text-4xl uppercase'>
+          <h2 className='font-jeopardy-card mt-2 mb-[15%] text-4xl uppercase'>
             Category
           </h2>
           <h3
