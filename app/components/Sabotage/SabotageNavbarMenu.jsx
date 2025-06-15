@@ -1,4 +1,5 @@
 import Incrementer from '../Incrementer'
+
 import { config } from '../../config'
 import { useGenerateRandomColors } from '../../hooks'
 

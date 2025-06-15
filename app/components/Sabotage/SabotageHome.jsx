@@ -2,6 +2,7 @@ import { useSearchParams } from 'react-router'
 import Navbar from '../Navbar'
 import SabotageNavbarMenu from './SabotageNavbarMenu'
 import GameRow from './GameRow'
+
 import { config } from '../../config'
 import { useGenerateRandomColors } from '../../hooks'
 
