@@ -1,30 +1,17 @@
-import { useSearchParams } from 'react-router'
 import { motion } from 'motion/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGoogleDrive } from '@fortawesome/free-brands-svg-icons'
 import JeopardyFileInput from './JeopardyFileInput'
 import { useJeopardyState } from './JeopardyContext'
-import { config } from '../../config'
 
 import { JEOPARDY_SET_DATA } from '../../actionTypes'
+import { config } from '../../config'
 
 export default function JeopardyStartScreen() {
-  const { dispatch } = useJeopardyState()
-
-  const [searchParams, setSearchParams] = useSearchParams({
-    spreadsheetId: '',
-  })
-
-  const spreadsheetId = searchParams.get('spreadsheetId')
+  const { state, dispatch } = useJeopardyState()
 
   function handleDataLoad({ data, spreadsheetId }) {
-    dispatch({ type: JEOPARDY_SET_DATA, payload: { data } })
-
-    // Put the spreadsheetId in the url as a search param to make easy sharing of games
-    setSearchParams((searchParams) => {
-      searchParams.set('spreadsheetId', spreadsheetId)
-      return searchParams
-    })
+    dispatch({ type: JEOPARDY_SET_DATA, payload: { data, spreadsheetId } })
   }
 
   return (
@@ -37,7 +24,7 @@ export default function JeopardyStartScreen() {
           Enter a Google Sheets file url
         </h2>
         <JeopardyFileInput
-          initialValue={spreadsheetId}
+          initialValue={state.spreadsheetId}
           onLoad={handleDataLoad}
         />
       </div>

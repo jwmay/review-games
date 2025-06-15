@@ -1,4 +1,5 @@
-import { createContext, useContext, useReducer } from 'react'
+import { createContext, useContext, useEffect, useReducer } from 'react'
+import { useSearchParams } from 'react-router'
 
 import {
   JEOPRADY_LOAD_NEW_SPREADSHEET,
@@ -12,10 +13,11 @@ import {
 
 const JeopardyContext = createContext()
 
-const initialState = {
+const defaultState = {
   data: { main: [], final: {} },
   selected: null,
   settings: { showAmount: false, studyMode: false },
+  spreadsheetId: '',
   status: {
     isBoardVisible: false,
     isDataLoaded: false,
@@ -28,7 +30,11 @@ const initialState = {
 const reducer = (state, action) => {
   switch (action.type) {
     case JEOPRADY_LOAD_NEW_SPREADSHEET:
-      return { ...initialState, settings: { ...state.settings } }
+      return {
+        ...defaultState,
+        settings: { ...state.settings },
+        spreadsheetId: state.spreadsheetId,
+      }
     case JEOPRADY_RESET_GAME_BOARD:
       return {
         ...state,
@@ -64,6 +70,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         data: action.payload.data,
+        spreadsheetId: action.payload.spreadsheetId,
         status: { ...state.status, isDataLoaded: true },
       }
     case JEOPARDY_SET_GAME_STATUS:
@@ -82,7 +89,37 @@ const reducer = (state, action) => {
 }
 
 const JeopardyProvider = ({ children }) => {
+  const [searchParams, setSearchParams] = useSearchParams({
+    spreadsheetId: '',
+    studyMode: false,
+  })
+
+  const initialState = {
+    ...defaultState,
+    settings: {
+      ...defaultState.settings,
+      studyMode:
+        JSON.parse(searchParams.get('studyMode')) ||
+        defaultState.settings.studyMode,
+    },
+    spreadsheetId:
+      searchParams.get('spreadsheetId') || defaultState.spreadsheetId,
+  }
+
   const [state, dispatch] = useReducer(reducer, initialState)
+
+  // Keep searchParams in sync with state
+  useEffect(() => {
+    // Set search params once we have a valid spreadsheet Id
+    if (state.spreadsheetId !== '') {
+      setSearchParams((searchParams) => {
+        searchParams.set('spreadsheetId', state.spreadsheetId)
+        searchParams.set('studyMode', state.settings.studyMode)
+        return searchParams
+      })
+    }
+  }, [state.settings.studyMode, state.spreadsheetId])
+
   return (
     <JeopardyContext.Provider value={{ state, dispatch }}>
       {children}
