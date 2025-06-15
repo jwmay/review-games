@@ -30,7 +30,7 @@ export default function JeopardyBoard({ data }) {
     ) // 15 seconds or 0 seconds
 
     return () => clearTimeout(timer)
-  }, [])
+  }, [state.settings.studyMode])
 
   useEffect(() => {
     // Set 'isFinal' flag once all questions have been selected
