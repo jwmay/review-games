@@ -23,6 +23,8 @@ export default function JeopardyFinalCard() {
 
   const { state } = useJeopardyState()
 
+  const animateClass = state.settings.studyMode ? '' : 'animate-zoom-in'
+
   function handleClick() {
     switch (view) {
       case VIEWS.TITLE_CARD:
@@ -42,9 +44,7 @@ export default function JeopardyFinalCard() {
   let display
   switch (view) {
     case VIEWS.TITLE_CARD:
-      display = (
-        <img className='animate-zoom-in' src='images/final-jeopardy.jpg' />
-      )
+      display = <img className={animateClass} src='images/final-jeopardy.jpg' />
       break
     case VIEWS.CATEGORY:
       display = (
@@ -55,7 +55,9 @@ export default function JeopardyFinalCard() {
           <h2 className='font-jeopardy-card mt-2 mb-32 text-4xl uppercase'>
             Category
           </h2>
-          <h3 className='animate-zoom-in font-jeopardy-board text-[12rem] uppercase'>
+          <h3
+            className={`font-jeopardy-board text-[12rem] uppercase ${animateClass}`}
+          >
             {state.data.final.category}
           </h3>
         </div>
@@ -77,7 +79,7 @@ export default function JeopardyFinalCard() {
 
   // Play think music when the question is shown
   useEffect(() => {
-    if (view === VIEWS.QUESTION && !isPlaying) {
+    if (view === VIEWS.QUESTION && !isPlaying && !state.settings.studyMode) {
       play()
     } else {
       stop()
