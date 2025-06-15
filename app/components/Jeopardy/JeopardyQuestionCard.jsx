@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { AutoTextSize } from 'auto-text-size'
 import parse from 'html-react-parser'
-import { useContextDispatch, useContextState } from './JeopardyContext'
+import { useJeopardyState } from './JeopardyContext'
 
 import { JEOPARDY_SET_SELECTED } from '../../actionTypes'
 
@@ -13,8 +13,7 @@ const VIEWS = {
 export default function JeopardyQuestionCard({ item }) {
   const [view, setView] = useState(VIEWS.QUESTION)
 
-  const state = useContextState()
-  const dispatch = useContextDispatch()
+  const { state, dispatch } = useJeopardyState()
 
   function handleClick() {
     const newView = view === VIEWS.QUESTION ? VIEWS.ANSWER : null

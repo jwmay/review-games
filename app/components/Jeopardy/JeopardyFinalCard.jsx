@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { AutoTextSize } from 'auto-text-size'
 import parse from 'html-react-parser'
 import { useAudioPlayer } from 'react-use-audio-player'
-import { useContextState } from './JeopardyContext'
+import { useJeopardyState } from './JeopardyContext'
 
 const VIEWS = {
   ANSWER: 'ANSWER',
@@ -21,7 +21,7 @@ export default function JeopardyFinalCard() {
     }
   )
 
-  const state = useContextState()
+  const { state } = useJeopardyState()
 
   function handleClick() {
     switch (view) {

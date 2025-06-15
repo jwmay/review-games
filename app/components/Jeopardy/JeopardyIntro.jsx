@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
-import { useContextDispatch } from './JeopardyContext'
+import { useJeopardyState } from './JeopardyContext'
 
 import { JEOPARDY_SET_GAME_STATUS } from '../../actionTypes'
 
 export default function JeopardyIntro() {
-  const dispatch = useContextDispatch()
+  const { dispatch } = useJeopardyState()
 
   // Set game status 'isIntroDone' after animations are complete
   useEffect(() => {

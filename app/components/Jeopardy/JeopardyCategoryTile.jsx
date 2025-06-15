@@ -1,8 +1,8 @@
 import { AutoTextSize } from 'auto-text-size'
-import { useContextState } from './JeopardyContext'
+import { useJeopardyState } from './JeopardyContext'
 
 export default function JeopardyCategoryTile({ category, id }) {
-  const state = useContextState()
+  const { state } = useJeopardyState()
 
   return (
     <div className='jeopardy-board-tile mb-[1vh]'>

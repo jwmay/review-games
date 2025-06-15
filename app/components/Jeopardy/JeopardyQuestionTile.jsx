@@ -1,6 +1,6 @@
 import { motion } from 'motion/react'
 import { AutoTextSize } from 'auto-text-size'
-import { useContextState, useContextDispatch } from './JeopardyContext'
+import { useJeopardyState } from './JeopardyContext'
 
 import {
   JEOPARDY_SET_CLICKED,
@@ -9,8 +9,7 @@ import {
 } from '../../actionTypes'
 
 export default function JeopardyQuestionTile({ item }) {
-  const state = useContextState()
-  const dispatch = useContextDispatch()
+  const { state, dispatch } = useJeopardyState()
 
   function handleClick() {
     dispatch({ type: JEOPARDY_SET_CLICKED, payload: { id: item.id } })

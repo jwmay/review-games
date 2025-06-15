@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
-import { useContextState, useContextDispatch } from './JeopardyContext'
+import { useJeopardyState } from './JeopardyContext'
 
 import {
   JEOPRADY_LOAD_NEW_SPREADSHEET,
@@ -9,8 +9,7 @@ import {
 } from '../../actionTypes'
 
 export default function JeopardyNavbarMenu() {
-  const state = useContextState()
-  const dispatch = useContextDispatch()
+  const { state, dispatch } = useJeopardyState()
 
   const isLoaded = state.data.main.length === 0
 

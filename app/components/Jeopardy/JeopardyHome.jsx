@@ -7,10 +7,10 @@ import JeopardyIntro from './JeopardyIntro'
 import JeopardyNavbarMenu from './JeopardyNavbarMenu'
 import JeopardyQuestionCard from './JeopardyQuestionCard'
 import JeopardyStartScreen from './JeopardyStartScreen'
-import { useContextState } from './JeopardyContext'
+import { useJeopardyState } from './JeopardyContext'
 
 export default function JeopardyHome() {
-  const state = useContextState()
+  const { state } = useJeopardyState()
 
   const { isPlaying, play, stop } = useAudioPlayer(
     'audio/jeopardy-intro-music.mp3',

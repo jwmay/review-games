@@ -10,8 +10,7 @@ import {
   JEOPARDY_SET_SELECTED,
 } from '../../actionTypes'
 
-const StateContext = createContext()
-const DispatchContext = createContext()
+const JeopardyContext = createContext()
 
 const initialState = {
   data: { main: [], final: {} },
@@ -82,18 +81,15 @@ const reducer = (state, action) => {
   }
 }
 
-const JeopardyContext = ({ children }) => {
+const JeopardyProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
   return (
-    <StateContext.Provider value={state}>
-      <DispatchContext.Provider value={dispatch}>
-        {children}
-      </DispatchContext.Provider>
-    </StateContext.Provider>
+    <JeopardyContext.Provider value={{ state, dispatch }}>
+      {children}
+    </JeopardyContext.Provider>
   )
 }
 
-const useContextState = () => useContext(StateContext)
-const useContextDispatch = () => useContext(DispatchContext)
+const useJeopardyState = () => useContext(JeopardyContext)
 
-export { JeopardyContext, useContextState, useContextDispatch }
+export { JeopardyProvider, useJeopardyState }

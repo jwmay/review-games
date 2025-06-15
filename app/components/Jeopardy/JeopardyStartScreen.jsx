@@ -3,13 +3,13 @@ import { motion } from 'motion/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGoogleDrive } from '@fortawesome/free-brands-svg-icons'
 import JeopardyFileInput from './JeopardyFileInput'
-import { useContextDispatch } from './JeopardyContext'
+import { useJeopardyState } from './JeopardyContext'
 import { config } from '../../config'
 
 import { JEOPARDY_SET_DATA } from '../../actionTypes'
 
 export default function JeopardyStartScreen() {
-  const dispatch = useContextDispatch()
+  const { dispatch } = useJeopardyState()
 
   const [searchParams, setSearchParams] = useSearchParams({
     spreadsheetId: '',

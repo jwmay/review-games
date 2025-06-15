@@ -1,4 +1,4 @@
-import { JeopardyContext } from '../components/Jeopardy/JeopardyContext'
+import { JeopardyProvider } from '../components/Jeopardy/JeopardyContext'
 import JeopardyHome from '../components/Jeopardy/JeopardyHome'
 
 export const meta = () => {
@@ -7,8 +7,8 @@ export const meta = () => {
 
 export default function Jeopardy() {
   return (
-    <JeopardyContext>
+    <JeopardyProvider>
       <JeopardyHome />
-    </JeopardyContext>
+    </JeopardyProvider>
   )
 }

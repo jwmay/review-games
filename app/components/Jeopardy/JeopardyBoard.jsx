@@ -1,14 +1,13 @@
 import { useEffect } from 'react'
 import JeopardyCategoryTile from './JeopardyCategoryTile'
 import JeopardyQuestionTile from './JeopardyQuestionTile'
-import { useContextState, useContextDispatch } from './JeopardyContext'
+import { useJeopardyState } from './JeopardyContext'
 import { config } from '../../config'
 
 import { JEOPARDY_SET_GAME_STATUS } from '../../actionTypes'
 
 export default function JeopardyBoard({ data }) {
-  const state = useContextState()
-  const dispatch = useContextDispatch()
+  const { state, dispatch } = useJeopardyState()
 
   useEffect(() => {
     // Set game status 'isBoardVisible' after category tile animations are complete, if intro is shown
