@@ -4,6 +4,8 @@ import parse from 'html-react-parser'
 import { useAudioPlayer } from 'react-use-audio-player'
 import { useJeopardyState } from './JeopardyContext'
 
+import { JEOPRADY_LOAD_NEW_SPREADSHEET } from '../../actionTypes'
+
 const VIEWS = {
   ANSWER: 'ANSWER',
   CATEGORY: 'CATEGORY',
@@ -21,11 +23,11 @@ export default function JeopardyFinalCard() {
     }
   )
 
-  const { state } = useJeopardyState()
+  const { state, dispatch } = useJeopardyState()
 
   const animateClass = state.settings.studyMode ? '' : 'animate-zoom-in'
 
-  function handleClick() {
+  function handleCardClick() {
     switch (view) {
       case VIEWS.TITLE_CARD:
         setView(VIEWS.CATEGORY)
@@ -39,6 +41,10 @@ export default function JeopardyFinalCard() {
       default:
         setView(null)
     }
+  }
+
+  function handleResetButtonClick() {
+    dispatch({ type: JEOPRADY_LOAD_NEW_SPREADSHEET })
   }
 
   let display
@@ -74,7 +80,19 @@ export default function JeopardyFinalCard() {
       )
       break
     default:
-      display = <div className='text-9xl'>GAME OVER</div>
+      display = (
+        <div>
+          <div className='text-9xl'>GAME OVER</div>
+          <div className='animate-zoom-in' style={{ animationDelay: '1s' }}>
+            <button
+              className='animate-pulse btn btn-xl btn-accent mt-8'
+              onClick={handleResetButtonClick}
+            >
+              Restart
+            </button>
+          </div>
+        </div>
+      )
   }
 
   // Play think music when the question is shown
@@ -89,7 +107,7 @@ export default function JeopardyFinalCard() {
   return (
     <div
       className='jeopardy-card'
-      onClick={handleClick}
+      onClick={handleCardClick}
       style={{
         color: view === VIEWS.ANSWER ? 'var(--color-jeopardy-gold)' : '',
         cursor: !view ? 'default' : 'pointer',
