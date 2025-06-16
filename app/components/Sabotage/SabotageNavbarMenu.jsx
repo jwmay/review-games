@@ -2,15 +2,23 @@ import Incrementer from '../Incrementer'
 
 import { config } from '../../config'
 import { useGenerateRandomColors } from '../../hooks'
+import { useSabotageState } from '../../context/SabotageContext'
 
-export default function SabotageNavbarMenu({
-  onColorsChange,
-  onNumBoxesChange,
-  onNumGroupsChange,
-}) {
+import { SABOTAGE_SAVE_SETTINGS } from '../../actionTypes'
+
+export default function SabotageNavbarMenu() {
+  const { dispatch } = useSabotageState()
+
   function handleColorsChangeButtonClick() {
     const colors = useGenerateRandomColors(config.sabotage.numGroups.max)
-    onColorsChange(colors)
+    dispatch({
+      type: SABOTAGE_SAVE_SETTINGS,
+      payload: { setting: 'colors', value: colors },
+    })
+  }
+
+  function handleIncrementerChange(setting, value) {
+    dispatch({ type: SABOTAGE_SAVE_SETTINGS, payload: { setting, value } })
   }
 
   return (
@@ -23,7 +31,7 @@ export default function SabotageNavbarMenu({
           max={config.sabotage.numBoxes.max}
           min={config.sabotage.numBoxes.min}
           name='numBoxes'
-          onChange={onNumBoxesChange}
+          onChange={(value) => handleIncrementerChange('numBoxes', value)}
         />
       </li>
       <li className='py-2'>
@@ -37,7 +45,7 @@ export default function SabotageNavbarMenu({
           max={config.sabotage.numGroups.max}
           min={config.sabotage.numGroups.min}
           name='numGroups'
-          onChange={onNumGroupsChange}
+          onChange={(value) => handleIncrementerChange('numGroups', value)}
         />
       </li>
     </>

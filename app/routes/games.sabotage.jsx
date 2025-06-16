@@ -1,3 +1,4 @@
+import { SabotageProvider } from '../context/SabotageContext'
 import SabotageHome from '../components/Sabotage/SabotageHome'
 
 export const meta = () => {
@@ -5,5 +6,9 @@ export const meta = () => {
 }
 
 export default function Sabotage() {
-  return <SabotageHome />
+  return (
+    <SabotageProvider>
+      <SabotageHome />
+    </SabotageProvider>
+  )
 }
