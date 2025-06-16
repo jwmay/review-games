@@ -3,11 +3,12 @@ import { createContext, useContext, useReducer } from 'react'
 import { config } from '../config'
 import { useGenerateRandomColors } from '../hooks'
 
-import { SABOTAGE_SAVE_SETTINGS } from '../actionTypes'
+import { SABOTAGE_SAVE_SETTINGS, SABOTAGE_SET_SCORE } from '../actionTypes'
 
 const SabotageContext = createContext()
 
 const defaultState = {
+  scores: new Array(config.sabotage.numGroups.max).fill(0),
   settings: {
     colors: useGenerateRandomColors(config.sabotage.numGroups.max),
     numBoxes: config.sabotage.numBoxes.default,
@@ -24,6 +25,13 @@ const reducer = (state, action) => {
           ...state.settings,
           [action.payload.setting]: action.payload.value,
         },
+      }
+    case SABOTAGE_SET_SCORE:
+      const newScores = [...state.scores]
+      newScores[action.payload.id] = action.payload.score
+      return {
+        ...state,
+        scores: newScores,
       }
     default:
       return state
