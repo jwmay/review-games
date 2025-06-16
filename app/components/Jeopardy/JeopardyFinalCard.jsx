@@ -4,7 +4,7 @@ import parse from 'html-react-parser'
 import { useAudioPlayer } from 'react-use-audio-player'
 import { useJeopardyState } from './JeopardyContext'
 
-import { JEOPRADY_LOAD_NEW_SPREADSHEET } from '../../actionTypes'
+import { JEOPRADY_RESTART_GAME } from '../../actionTypes'
 
 const VIEWS = {
   ANSWER: 'ANSWER',
@@ -43,8 +43,8 @@ export default function JeopardyFinalCard() {
     }
   }
 
-  function handleResetButtonClick() {
-    dispatch({ type: JEOPRADY_LOAD_NEW_SPREADSHEET })
+  function handleRestartButtonClick() {
+    dispatch({ type: JEOPRADY_RESTART_GAME })
   }
 
   let display
@@ -86,7 +86,7 @@ export default function JeopardyFinalCard() {
           <div className='animate-zoom-in' style={{ animationDelay: '1s' }}>
             <button
               className='animate-pulse btn btn-xl btn-accent mt-8'
-              onClick={handleResetButtonClick}
+              onClick={handleRestartButtonClick}
             >
               Restart
             </button>

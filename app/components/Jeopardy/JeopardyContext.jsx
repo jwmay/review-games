@@ -2,8 +2,7 @@ import { createContext, useContext, useEffect, useReducer } from 'react'
 import { useSearchParams } from 'react-router'
 
 import {
-  JEOPRADY_LOAD_NEW_SPREADSHEET,
-  JEOPRADY_RESET_GAME_BOARD,
+  JEOPRADY_RESTART_GAME,
   JEOPARDY_SAVE_SETTINGS,
   JEOPARDY_SET_CLICKED,
   JEOPARDY_SET_DATA,
@@ -29,20 +28,11 @@ const defaultState = {
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case JEOPRADY_LOAD_NEW_SPREADSHEET:
+    case JEOPRADY_RESTART_GAME:
       return {
         ...defaultState,
         settings: { ...state.settings },
         spreadsheetId: state.spreadsheetId,
-      }
-    case JEOPRADY_RESET_GAME_BOARD:
-      return {
-        ...state,
-        data: {
-          ...state.data,
-          main: state.data.main.map((item) => ({ ...item, clicked: false })),
-        },
-        status: { ...state.status, isFinal: false, numClicked: 0 },
       }
     case JEOPARDY_SAVE_SETTINGS:
       return {

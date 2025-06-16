@@ -3,8 +3,7 @@ import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import { useJeopardyState } from './JeopardyContext'
 
 import {
-  JEOPRADY_LOAD_NEW_SPREADSHEET,
-  JEOPRADY_RESET_GAME_BOARD,
+  JEOPRADY_RESTART_GAME,
   JEOPARDY_SAVE_SETTINGS,
 } from '../../actionTypes'
 
@@ -13,12 +12,8 @@ export default function JeopardyNavbarMenu() {
 
   const isLoaded = state.data.main.length === 0
 
-  function handleLoadNewSpreadsheetButtonClick() {
-    dispatch({ type: JEOPRADY_LOAD_NEW_SPREADSHEET })
-  }
-
-  function handleResetBoardButtonClick() {
-    dispatch({ type: JEOPRADY_RESET_GAME_BOARD })
+  function handleRestartButtonClick() {
+    dispatch({ type: JEOPRADY_RESTART_GAME })
   }
 
   function handleSettingButtonClick(setting) {
@@ -29,12 +24,7 @@ export default function JeopardyNavbarMenu() {
   return (
     <>
       <li className={`py-2 ${isLoaded ? 'menu-disabled' : ''}`}>
-        <button onClick={handleResetBoardButtonClick}>Reset game board</button>
-      </li>
-      <li className={`py-2 ${isLoaded ? 'menu-disabled' : ''}`}>
-        <button onClick={handleLoadNewSpreadsheetButtonClick}>
-          Load new spreadsheet
-        </button>
+        <button onClick={handleRestartButtonClick}>Restart game</button>
       </li>
       <div className='divider m-0'></div>
       <li className='py-2'>
