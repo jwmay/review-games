@@ -17,7 +17,11 @@ export default function SabotageHome() {
     return [...Array(state.settings.numGroups)].map((_, index) => (
       <SabotageGameRow
         color={state.settings.colors[index]}
-        initialValue={state.scores[index]}
+        initialValue={
+          state.scores[index] > state.settings.numBoxes
+            ? state.settings.numBoxes
+            : state.scores[index]
+        }
         key={index}
         numBoxes={state.settings.numBoxes}
         onChange={(score) => handleRowScoreChange(index, score)}
