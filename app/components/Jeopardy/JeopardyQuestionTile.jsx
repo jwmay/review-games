@@ -1,6 +1,6 @@
 import { motion } from 'motion/react'
 import { AutoTextSize } from 'auto-text-size'
-import { useJeopardyState } from './JeopardyContext'
+import { useJeopardyState } from '../../context/JeopardyContext'
 
 import {
   JEOPARDY_SET_CLICKED,

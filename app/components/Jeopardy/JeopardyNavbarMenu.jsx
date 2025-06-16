@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
-import { useJeopardyState } from './JeopardyContext'
+import { useJeopardyState } from '../../context/JeopardyContext'
 
 import {
   JEOPRADY_RESTART_GAME,

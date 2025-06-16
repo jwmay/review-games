@@ -1,4 +1,4 @@
-import { JeopardyProvider } from '../components/Jeopardy/JeopardyContext'
+import { JeopardyProvider } from '../context/JeopardyContext'
 import JeopardyHome from '../components/Jeopardy/JeopardyHome'
 
 export const meta = () => {

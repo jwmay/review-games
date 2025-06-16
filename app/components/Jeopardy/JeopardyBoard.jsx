@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import JeopardyCategoryTile from './JeopardyCategoryTile'
 import JeopardyQuestionTile from './JeopardyQuestionTile'
-import { useJeopardyState } from './JeopardyContext'
+import { useJeopardyState } from '../../context/JeopardyContext'
 
 import { JEOPARDY_SET_GAME_STATUS } from '../../actionTypes'
 import { config } from '../../config'

@@ -7,7 +7,7 @@ import JeopardyIntro from './JeopardyIntro'
 import JeopardyNavbarMenu from './JeopardyNavbarMenu'
 import JeopardyQuestionCard from './JeopardyQuestionCard'
 import JeopardyStartScreen from './JeopardyStartScreen'
-import { useJeopardyState } from './JeopardyContext'
+import { useJeopardyState } from '../../context/JeopardyContext'
 
 export default function JeopardyHome() {
   const { state } = useJeopardyState()

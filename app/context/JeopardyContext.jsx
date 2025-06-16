@@ -8,7 +8,7 @@ import {
   JEOPARDY_SET_DATA,
   JEOPARDY_SET_GAME_STATUS,
   JEOPARDY_SET_SELECTED,
-} from '../../actionTypes'
+} from '../actionTypes'
 
 const JeopardyContext = createContext()
 

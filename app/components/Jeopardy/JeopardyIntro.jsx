@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useJeopardyState } from './JeopardyContext'
+import { useJeopardyState } from '../../context/JeopardyContext'
 
 import { JEOPARDY_SET_GAME_STATUS } from '../../actionTypes'
 

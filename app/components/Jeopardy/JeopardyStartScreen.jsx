@@ -2,7 +2,7 @@ import { motion } from 'motion/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGoogleDrive } from '@fortawesome/free-brands-svg-icons'
 import JeopardyFileInput from './JeopardyFileInput'
-import { useJeopardyState } from './JeopardyContext'
+import { useJeopardyState } from '../../context/JeopardyContext'
 
 import { JEOPARDY_SET_DATA } from '../../actionTypes'
 import { config } from '../../config'
