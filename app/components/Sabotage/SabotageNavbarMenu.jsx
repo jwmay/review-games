@@ -4,7 +4,10 @@ import { config } from '../../config'
 import { useGenerateRandomColors } from '../../hooks'
 import { useSabotageState } from '../../context/SabotageContext'
 
-import { SABOTAGE_SAVE_SETTINGS } from '../../actionTypes'
+import {
+  SABOTAGE_RESTART_GAME,
+  SABOTAGE_SAVE_SETTINGS,
+} from '../../actionTypes'
 
 export default function SabotageNavbarMenu() {
   const { dispatch } = useSabotageState()
@@ -21,8 +24,19 @@ export default function SabotageNavbarMenu() {
     dispatch({ type: SABOTAGE_SAVE_SETTINGS, payload: { setting, value } })
   }
 
+  function handleRestartGameButtonClick() {
+    dispatch({ type: SABOTAGE_RESTART_GAME })
+  }
+
   return (
     <>
+      <li className='py-2'>
+        <button onClick={handleRestartGameButtonClick}>Restart game</button>
+      </li>
+      <li className='py-2'>
+        <button onClick={handleColorsChangeButtonClick}>Change Colors</button>
+      </li>
+      <div className='divider m-0'></div>
       <li className='py-2'>
         <Incrementer
           description='Supports up to 20 boxes'
@@ -33,9 +47,6 @@ export default function SabotageNavbarMenu() {
           name='numBoxes'
           onChange={(value) => handleIncrementerChange('numBoxes', value)}
         />
-      </li>
-      <li className='py-2'>
-        <button onClick={handleColorsChangeButtonClick}>Change Colors</button>
       </li>
       <li className='py-2'>
         <Incrementer

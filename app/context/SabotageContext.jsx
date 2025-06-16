@@ -3,7 +3,11 @@ import { createContext, useContext, useReducer } from 'react'
 import { config } from '../config'
 import { useGenerateRandomColors } from '../hooks'
 
-import { SABOTAGE_SAVE_SETTINGS, SABOTAGE_SET_SCORE } from '../actionTypes'
+import {
+  SABOTAGE_RESTART_GAME,
+  SABOTAGE_SAVE_SETTINGS,
+  SABOTAGE_SET_SCORE,
+} from '../actionTypes'
 
 const SabotageContext = createContext()
 
@@ -18,6 +22,8 @@ const defaultState = {
 
 const reducer = (state, action) => {
   switch (action.type) {
+    case SABOTAGE_RESTART_GAME:
+      return { ...state, scores: [...defaultState.scores] }
     case SABOTAGE_SAVE_SETTINGS:
       return {
         ...state,
