@@ -3,7 +3,7 @@ import { faSquare } from '@fortawesome/free-solid-svg-icons'
 import { faSquare as faSquareOpen } from '@fortawesome/free-regular-svg-icons'
 import { Rating } from 'react-simple-star-rating'
 
-export default function GameRow({ color, numBoxes, title }) {
+export default function SabotageGameRow({ color, numBoxes, title }) {
   return (
     <div className='divide-x flex items-center' id='gameRow'>
       <h1

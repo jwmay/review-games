@@ -1,7 +1,7 @@
 import { useSearchParams } from 'react-router'
 import Navbar from '../Navbar'
 import SabotageNavbarMenu from './SabotageNavbarMenu'
-import GameRow from './GameRow'
+import SabotageGameRow from './SabotageGameRow'
 
 import { config } from '../../config'
 import { useGenerateRandomColors } from '../../hooks'
@@ -41,7 +41,7 @@ export default function SabotageHome() {
 
   function GameRows() {
     return [...Array(numGroups)].map((_, index) => (
-      <GameRow
+      <SabotageGameRow
         color={colors[index]}
         key={index}
         numBoxes={numBoxes}
