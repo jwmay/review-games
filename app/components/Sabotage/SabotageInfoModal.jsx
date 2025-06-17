@@ -1,54 +1,19 @@
 import { Link } from 'react-router'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faBullseye,
   faChessBoard,
   faTrophy,
 } from '@fortawesome/free-solid-svg-icons'
-import GameInfoModal from '../GameInfoModal'
-
-export function Entry({ children, color, heading, icon }) {
-  return (
-    <li className='list-row mb-12 last-of-type:mb-0'>
-      <div>
-        <FontAwesomeIcon
-          className={'text-warning fa-3x'}
-          fixedWidth
-          icon={icon}
-        />
-      </div>
-      <div>
-        <h2 className={`text-${color} text-3xl mb-6`}>{heading}</h2>
-        <div className='text-lg pb-4'>{children}</div>
-      </div>
-    </li>
-  )
-}
-
-export function Step({ children }) {
-  return (
-    <li
-      className='step step-primary'
-      style={{
-        gap: 30,
-        gridRowStart: 'auto',
-        minHeight: '9rem',
-        textAlign: 'left',
-      }}
-    >
-      <p className=''>{children}</p>
-    </li>
-  )
-}
+import { Entry, GameInfoModal, Step } from '../GameInfoModal'
 
 export default function SabotageInfoModal() {
   return (
     <GameInfoModal id='sabotage_info_modal' title='Sabotage'>
       <ul className='list'>
-        <Entry color='info' heading='Objective' icon={faBullseye}>
+        <Entry color='info' faIcon={faBullseye} title='Objective'>
           To have the fewest number of boxes by the end of the game.
         </Entry>
-        <Entry color='secondary' heading='How to Play' icon={faChessBoard}>
+        <Entry color='secondary' faIcon={faChessBoard} title='How to Play'>
           <ul className='steps steps-vertical'>
             <Step>
               The first team to correctly answer a question gets 6 boxes to
@@ -72,7 +37,7 @@ export default function SabotageInfoModal() {
             </Step>
           </ul>
         </Entry>
-        <Entry color='success' heading='How to Win' icon={faTrophy}>
+        <Entry color='success' faIcon={faTrophy} title='How to Win'>
           The team or teams with the fewest boxes is the winner! Teams that have
           their entire row full cannot win the game.
           <div className='flex justify-end mt-16'>

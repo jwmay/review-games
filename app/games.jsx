@@ -1,11 +1,13 @@
+import JeopardyInfoModal from './components/Jeopardy/JeopardyInfoModal'
 import SabotageInfoModal from './components/Sabotage/SabotageInfoModal'
 
 export default [
   {
     title: 'Jeopardy',
-    description: 'The classic trivia game!',
+    description:
+      'The classic trivia game...now easier to create using a single Google Sheets template file!',
     imageSrc: 'images/game-tile-jeopardy.jpg',
-    learnMoreModal: null,
+    learnMoreModal: <JeopardyInfoModal />,
     comingSoon: false,
   },
   {

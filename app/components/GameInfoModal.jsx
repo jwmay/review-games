@@ -1,4 +1,24 @@
-export default function GameInfoModal({ children, id, title }) {
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+export function Entry({ children, color, faIcon, title }) {
+  return (
+    <li className='list-row mb-12 last-of-type:mb-0'>
+      <div>
+        <FontAwesomeIcon
+          className={'text-warning fa-3x'}
+          fixedWidth
+          icon={faIcon}
+        />
+      </div>
+      <div>
+        <h2 className={`text-${color} text-3xl mb-6`}>{title}</h2>
+        <div className='text-lg pb-4'>{children}</div>
+      </div>
+    </li>
+  )
+}
+
+export function GameInfoModal({ children, id, title }) {
   return (
     <>
       <button
@@ -22,5 +42,21 @@ export default function GameInfoModal({ children, id, title }) {
         </form>
       </dialog>
     </>
+  )
+}
+
+export function Step({ children }) {
+  return (
+    <li
+      className='step step-primary'
+      style={{
+        gap: 30,
+        gridRowStart: 'auto',
+        minHeight: '9rem',
+        textAlign: 'left',
+      }}
+    >
+      <p className=''>{children}</p>
+    </li>
   )
 }
