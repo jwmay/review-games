@@ -12,12 +12,12 @@ export const config = {
     numBoxes: {
       default: 20,
       max: 20,
-      min: 1,
+      min: 2,
     },
     numGroups: {
       default: 10,
       max: 20,
-      min: 1,
+      min: 2,
     },
   },
 }

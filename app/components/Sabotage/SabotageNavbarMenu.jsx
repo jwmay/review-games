@@ -39,7 +39,7 @@ export default function SabotageNavbarMenu() {
       <div className='divider m-0'></div>
       <li className='py-2'>
         <Incrementer
-          description='Supports up to 20 boxes'
+          description={`Supports ${config.sabotage.numBoxes.min} to ${config.sabotage.numBoxes.max} boxes`}
           initialValue={config.sabotage.numBoxes.default}
           label='Boxes'
           max={config.sabotage.numBoxes.max}
@@ -50,7 +50,7 @@ export default function SabotageNavbarMenu() {
       </li>
       <li className='py-2'>
         <Incrementer
-          description='Supports up to 20 groups'
+          description={`Supports ${config.sabotage.numGroups.min} to ${config.sabotage.numGroups.max} groups`}
           initialValue={config.sabotage.numGroups.default}
           label='Groups'
           max={config.sabotage.numGroups.max}

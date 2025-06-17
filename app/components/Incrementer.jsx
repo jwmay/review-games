@@ -16,10 +16,10 @@ export default function Incrementer({
     const intent = event.target.value
     const val = parseInt(value)
 
-    if (intent === 'decrement' && value != min) {
+    if (intent === 'decrement' && value !== min) {
       onChange(val - 1)
       setValue(val - 1)
-    } else if (intent === 'increment' && value != max) {
+    } else if (intent === 'increment' && value !== max) {
       onChange(val + 1)
       setValue(val + 1)
     }
@@ -28,12 +28,12 @@ export default function Incrementer({
   const handleInputChange = (event) => {
     const value = event.target.value
 
-    if (value === '') {
+    if (value === '' || value === '1') {
       setValue(value)
     }
 
     if (value >= min && value <= max) {
-      onChange(value)
+      onChange(parseInt(value))
       setValue(value)
     }
   }
