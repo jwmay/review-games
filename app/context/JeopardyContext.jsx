@@ -15,13 +15,14 @@ const JeopardyContext = createContext()
 const defaultState = {
   data: { main: [], final: {} },
   selected: null,
-  settings: { showAmount: false, studyMode: false },
+  settings: { showAmount: false, showScoreboard: true, studyMode: false },
   spreadsheetId: '',
   status: {
     isBoardVisible: false,
     isDataLoaded: false,
     isFinal: false,
     isIntroDone: false,
+    isScoring: false,
     numClicked: 0,
   },
 }
@@ -72,7 +73,11 @@ const reducer = (state, action) => {
         },
       }
     case JEOPARDY_SET_SELECTED:
-      return { ...state, selected: action.payload.selected }
+      return {
+        ...state,
+        selected: action.payload.selected,
+        status: { ...state.status, isScoring: action.payload.isScoring },
+      }
     default:
       return state
   }

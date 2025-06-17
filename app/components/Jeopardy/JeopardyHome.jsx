@@ -6,6 +6,7 @@ import JeopardyFinalCard from './JeopardyFinalCard'
 import JeopardyIntro from './JeopardyIntro'
 import JeopardyNavbarMenu from './JeopardyNavbarMenu'
 import JeopardyQuestionCard from './JeopardyQuestionCard'
+import JeopardyScoreboard from './JeopardyScoreboard'
 import JeopardyStartScreen from './JeopardyStartScreen'
 import { useJeopardyState } from '../../context/JeopardyContext'
 
@@ -44,6 +45,13 @@ export default function JeopardyHome() {
   } else if (!state.status.isIntroDone && !state.settings.studyMode) {
     // show intro animations and music if user settings allow it
     display = <JeopardyIntro />
+  } else if (
+    state.status.isScoring &&
+    state.settings.showScoreboard &&
+    !state.settings.studyMode
+  ) {
+    // show scoreboard if user settings allow it
+    display = <JeopardyScoreboard />
   } else if (state.status.isFinal) {
     // show the Final Jeopardy question then answer
     display = <JeopardyFinalCard />

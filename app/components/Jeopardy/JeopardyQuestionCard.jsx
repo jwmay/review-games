@@ -15,11 +15,18 @@ export default function JeopardyQuestionCard({ item }) {
 
   const { state, dispatch } = useJeopardyState()
 
+  const isScoring = state.settings.showScoreboard && !state.settings.studyMode
+
   function handleClick() {
-    const newView = view === VIEWS.QUESTION ? VIEWS.ANSWER : null
-    setView(newView)
-    if (!newView) {
-      dispatch({ type: JEOPARDY_SET_SELECTED, payload: { selected: null } })
+    switch (view) {
+      case VIEWS.QUESTION:
+        setView(VIEWS.ANSWER)
+        break
+      case VIEWS.ANSWER:
+        dispatch({
+          type: JEOPARDY_SET_SELECTED,
+          payload: { selected: null, isScoring },
+        })
     }
   }
 

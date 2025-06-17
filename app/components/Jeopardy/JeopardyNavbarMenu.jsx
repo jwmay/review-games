@@ -30,6 +30,20 @@ export default function JeopardyNavbarMenu() {
       <li className='py-2'>
         <label className='label'>
           <input
+            checked={
+              state.settings.studyMode ? false : state.settings.showScoreboard
+            }
+            disabled={state.settings.studyMode}
+            className='toggle toggle-sm toggle-warning'
+            onChange={() => handleSettingButtonClick('showScoreboard')}
+            type='checkbox'
+          />
+          Show scoreboard
+        </label>
+      </li>
+      <li className='py-2'>
+        <label className='label'>
+          <input
             checked={state.settings.showAmount}
             className='toggle toggle-sm toggle-warning'
             onChange={() => handleSettingButtonClick('showAmount')}
