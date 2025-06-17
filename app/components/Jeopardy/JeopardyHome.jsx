@@ -55,12 +55,12 @@ export default function JeopardyHome() {
   } else if (state.status.isFinal) {
     // show the Final Jeopardy question then answer
     display = <JeopardyFinalCard />
-  } else if (!state.selected) {
+  } else if (!state.status.selected) {
     // data but no question selected, display full board
     display = <JeopardyBoard data={state.data.main} />
   } else {
     // data and question selected, show question then answer
-    display = <JeopardyQuestionCard item={state.selected} />
+    display = <JeopardyQuestionCard item={state.status.selected} />
   }
 
   return (

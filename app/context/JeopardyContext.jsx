@@ -7,14 +7,12 @@ import {
   JEOPARDY_SET_CLICKED,
   JEOPARDY_SET_DATA,
   JEOPARDY_SET_GAME_STATUS,
-  JEOPARDY_SET_SELECTED,
 } from '../actionTypes'
 
 const JeopardyContext = createContext()
 
 const defaultState = {
   data: { main: [], final: {} },
-  selected: null,
   settings: { showAmount: false, showScoreboard: true, studyMode: false },
   spreadsheetId: '',
   status: {
@@ -24,6 +22,7 @@ const defaultState = {
     isIntroDone: false,
     isScoring: false,
     numClicked: 0,
+    selected: null,
   },
 }
 
@@ -71,12 +70,6 @@ const reducer = (state, action) => {
           ...state.status,
           [action.payload.status]: action.payload.value,
         },
-      }
-    case JEOPARDY_SET_SELECTED:
-      return {
-        ...state,
-        selected: action.payload.selected,
-        status: { ...state.status, isScoring: action.payload.isScoring },
       }
     default:
       return state

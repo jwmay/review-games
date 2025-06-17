@@ -5,7 +5,6 @@ import { useJeopardyState } from '../../context/JeopardyContext'
 import {
   JEOPARDY_SET_CLICKED,
   JEOPARDY_SET_GAME_STATUS,
-  JEOPARDY_SET_SELECTED,
 } from '../../actionTypes'
 
 export default function JeopardyQuestionTile({ item }) {
@@ -13,7 +12,10 @@ export default function JeopardyQuestionTile({ item }) {
 
   function handleClick() {
     dispatch({ type: JEOPARDY_SET_CLICKED, payload: { id: item.id } })
-    dispatch({ type: JEOPARDY_SET_SELECTED, payload: { selected: item } })
+    dispatch({
+      type: JEOPARDY_SET_GAME_STATUS,
+      payload: { status: 'selected', value: item },
+    })
     if (!item.clicked) {
       dispatch({
         type: JEOPARDY_SET_GAME_STATUS,
