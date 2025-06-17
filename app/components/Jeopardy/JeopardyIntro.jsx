@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useJeopardyState } from '../../context/JeopardyContext'
 
-import { JEOPARDY_SET_GAME_STATUS } from '../../actionTypes'
+import { JEOPARDY_SET_STATUS } from '../../actionTypes'
 
 export default function JeopardyIntro() {
   const { dispatch } = useJeopardyState()
@@ -10,7 +10,7 @@ export default function JeopardyIntro() {
   useEffect(() => {
     const timer = setTimeout(() => {
       dispatch({
-        type: JEOPARDY_SET_GAME_STATUS,
+        type: JEOPARDY_SET_STATUS,
         payload: { status: 'isIntroDone', value: true },
       })
     }, 7000) // 7 seconds

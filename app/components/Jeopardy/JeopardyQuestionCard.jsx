@@ -3,7 +3,7 @@ import { AutoTextSize } from 'auto-text-size'
 import parse from 'html-react-parser'
 import { useJeopardyState } from '../../context/JeopardyContext'
 
-import { JEOPARDY_SET_GAME_STATUS } from '../../actionTypes'
+import { JEOPARDY_SET_STATUS } from '../../actionTypes'
 
 const VIEWS = {
   ANSWER: 'ANSWER',
@@ -24,14 +24,14 @@ export default function JeopardyQuestionCard({ item }) {
         break
       case VIEWS.ANSWER:
         dispatch({
-          type: JEOPARDY_SET_GAME_STATUS,
+          type: JEOPARDY_SET_STATUS,
           payload: {
             status: 'isScoring',
             value: isScoring,
           },
         })
         dispatch({
-          type: JEOPARDY_SET_GAME_STATUS,
+          type: JEOPARDY_SET_STATUS,
           payload: {
             status: 'selected',
             value: isScoring ? state.status.selected : null,

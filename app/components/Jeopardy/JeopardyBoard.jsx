@@ -3,7 +3,7 @@ import JeopardyCategoryTile from './JeopardyCategoryTile'
 import JeopardyQuestionTile from './JeopardyQuestionTile'
 import { useJeopardyState } from '../../context/JeopardyContext'
 
-import { JEOPARDY_SET_GAME_STATUS } from '../../actionTypes'
+import { JEOPARDY_SET_STATUS } from '../../actionTypes'
 import { config } from '../../config'
 
 export default function JeopardyBoard({ data }) {
@@ -14,14 +14,14 @@ export default function JeopardyBoard({ data }) {
     const timer = setTimeout(
       () => {
         dispatch({
-          type: JEOPARDY_SET_GAME_STATUS,
+          type: JEOPARDY_SET_STATUS,
           payload: { status: 'isBoardVisible', value: true },
         })
 
         // If intro was not shown per user settings, mark it as shown
         if (state.settings.studyMode) {
           dispatch({
-            type: JEOPARDY_SET_GAME_STATUS,
+            type: JEOPARDY_SET_STATUS,
             payload: { status: 'isIntroDone', value: true },
           })
         }
@@ -36,7 +36,7 @@ export default function JeopardyBoard({ data }) {
     // Set 'isFinal' flag once all questions have been selected
     if (state.status.numClicked === config.jeopardy.maxQuestions) {
       dispatch({
-        type: JEOPARDY_SET_GAME_STATUS,
+        type: JEOPARDY_SET_STATUS,
         payload: { status: 'isFinal', value: true },
       })
     }

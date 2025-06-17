@@ -6,7 +6,7 @@ import {
   JEOPARDY_SAVE_SETTINGS,
   JEOPARDY_SET_CLICKED,
   JEOPARDY_SET_DATA,
-  JEOPARDY_SET_GAME_STATUS,
+  JEOPARDY_SET_STATUS,
 } from '../actionTypes'
 
 const JeopardyContext = createContext()
@@ -63,7 +63,7 @@ const reducer = (state, action) => {
         spreadsheetId: action.payload.spreadsheetId,
         status: { ...state.status, isDataLoaded: true },
       }
-    case JEOPARDY_SET_GAME_STATUS:
+    case JEOPARDY_SET_STATUS:
       return {
         ...state,
         status: {
