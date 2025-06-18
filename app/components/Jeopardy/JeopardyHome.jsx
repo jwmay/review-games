@@ -8,6 +8,7 @@ import JeopardyNavbarMenu from './JeopardyNavbarMenu'
 import JeopardyQuestionCard from './JeopardyQuestionCard'
 import JeopardyScoreboard from './JeopardyScoreboard'
 import JeopardyStartScreen from './JeopardyStartScreen'
+
 import { useJeopardyState } from '../../context/JeopardyContext'
 
 export default function JeopardyHome() {

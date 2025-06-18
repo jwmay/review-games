@@ -1,4 +1,5 @@
 import { AutoTextSize } from 'auto-text-size'
+
 import { useJeopardyState } from '../../context/JeopardyContext'
 
 export default function JeopardyCategoryTile({ category, id }) {

@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { AutoTextSize } from 'auto-text-size'
 import parse from 'html-react-parser'
-import { useJeopardyState } from '../../context/JeopardyContext'
 
+import { useJeopardyState } from '../../context/JeopardyContext'
 import { JEOPARDY_SET_STATUS } from '../../actionTypes'
 
 const VIEWS = {

@@ -5,8 +5,8 @@ import {
   faXmark,
 } from '@fortawesome/free-solid-svg-icons'
 import { NumericFormat } from 'react-number-format'
-import { useJeopardyState } from '../../context/JeopardyContext'
 
+import { useJeopardyState } from '../../context/JeopardyContext'
 import { JEOPARDY_SET_SCORE, JEOPARDY_SET_STATUS } from '../../actionTypes'
 
 const AUDIO = {

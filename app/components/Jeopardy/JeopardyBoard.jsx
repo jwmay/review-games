@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
 import JeopardyCategoryTile from './JeopardyCategoryTile'
 import JeopardyQuestionTile from './JeopardyQuestionTile'
-import { useJeopardyState } from '../../context/JeopardyContext'
 
-import { JEOPARDY_SET_STATUS } from '../../actionTypes'
 import { config } from '../../config'
+import { useJeopardyState } from '../../context/JeopardyContext'
+import { JEOPARDY_SET_STATUS } from '../../actionTypes'
 
 export default function JeopardyBoard({ data }) {
   const { state, dispatch } = useJeopardyState()

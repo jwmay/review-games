@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react'
 import { AutoTextSize } from 'auto-text-size'
 import parse from 'html-react-parser'
 import { useAudioPlayer } from 'react-use-audio-player'
-import { useJeopardyState } from '../../context/JeopardyContext'
 
+import { useJeopardyState } from '../../context/JeopardyContext'
 import { JEOPRADY_RESTART_GAME } from '../../actionTypes'
 
 const VIEWS = {

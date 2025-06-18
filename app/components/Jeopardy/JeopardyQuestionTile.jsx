@@ -1,7 +1,7 @@
 import { motion } from 'motion/react'
 import { AutoTextSize } from 'auto-text-size'
-import { useJeopardyState } from '../../context/JeopardyContext'
 
+import { useJeopardyState } from '../../context/JeopardyContext'
 import { JEOPARDY_SET_CLICKED, JEOPARDY_SET_STATUS } from '../../actionTypes'
 
 export default function JeopardyQuestionTile({ item }) {
