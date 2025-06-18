@@ -83,6 +83,7 @@ export default function JeopardyScoreboard() {
                 <div className='join' style={{ gridArea: '6 / 2 / 7 / 3' }}>
                   <button
                     className='btn btn-error btn-soft btn-sm md:btn-md lg:btn-lg xl:btn-xl join-item'
+                    disabled={!state.status.selected}
                     onClick={() => {
                       handleSetScoreClick(index, true)
                     }}
@@ -91,6 +92,7 @@ export default function JeopardyScoreboard() {
                   </button>
                   <button
                     className='btn btn-success btn-soft btn-sm md:btn-md lg:btn-lg xl:btn-xl join-item'
+                    disabled={!state.status.selected}
                     onClick={() => {
                       handleSetScoreClick(index)
                     }}

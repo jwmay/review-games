@@ -8,12 +8,16 @@ import { useJeopardyState } from '../../context/JeopardyContext'
 import {
   JEOPRADY_RESTART_GAME,
   JEOPARDY_SAVE_SETTINGS,
+  JEOPARDY_SET_STATUS,
 } from '../../actionTypes'
 
 export default function JeopardyNavbarMenu() {
   const { state, dispatch } = useJeopardyState()
 
   const isLoaded = state.data.main.length === 0
+
+  const showScoreboardMenu =
+    state.settings.showScoreboard && !state.settings.studyMode
 
   function handleIncrementerChange(setting, value) {
     dispatch({ type: JEOPARDY_SAVE_SETTINGS, payload: { setting, value } })
@@ -26,6 +30,13 @@ export default function JeopardyNavbarMenu() {
   function handleSettingButtonClick(setting) {
     const value = !state.settings[setting]
     dispatch({ type: JEOPARDY_SAVE_SETTINGS, payload: { setting, value } })
+  }
+
+  function handleViewScoreboardButtonClick() {
+    dispatch({
+      type: JEOPARDY_SET_STATUS,
+      payload: { status: 'isScoring', value: true },
+    })
   }
 
   return (
@@ -89,7 +100,7 @@ export default function JeopardyNavbarMenu() {
         </label>
       </li>
 
-      {state.settings.showScoreboard && !state.settings.studyMode && (
+      {showScoreboardMenu && (
         <li className='py-2'>
           <label className='label'>
             <input
@@ -103,7 +114,7 @@ export default function JeopardyNavbarMenu() {
         </li>
       )}
 
-      {state.settings.showScoreboard && !state.settings.studyMode && (
+      {showScoreboardMenu && (
         <li className='py-2'>
           <Incrementer
             description={`Supports ${config.jeopardy.numTeams.min} to ${config.jeopardy.numTeams.max} teams`}
@@ -114,6 +125,14 @@ export default function JeopardyNavbarMenu() {
             name='numTemas'
             onChange={(value) => handleIncrementerChange('numTeams', value)}
           />
+        </li>
+      )}
+
+      {showScoreboardMenu && (
+        <li className={`py-2 ${isLoaded ? 'menu-disabled' : ''}`}>
+          <button onClick={handleViewScoreboardButtonClick}>
+            View scoreboard
+          </button>
         </li>
       )}
     </>
