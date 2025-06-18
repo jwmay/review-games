@@ -39,7 +39,7 @@ export default function Incrementer({
   }
 
   return (
-    <div>
+    <div className='flex justify-between'>
       {label && <label>{label}</label>}
       <div className='join'>
         <button
@@ -51,7 +51,7 @@ export default function Incrementer({
           <FontAwesomeIcon icon={faMinus} className='pointer-events-none' />
         </button>
         <input
-          className='input validator join-item text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none'
+          className='input validator join-item text-center max-w-20 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none'
           max={max}
           min={min}
           onChange={handleInputChange}
