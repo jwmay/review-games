@@ -45,7 +45,10 @@ export default function JeopardyNavbarMenu() {
             type='checkbox'
           />
           Study mode
-          <div className='tooltip' data-tip='Disables animations and sounds'>
+          <div
+            className='tooltip tooltip-left'
+            data-tip='Disables animations and sounds'
+          >
             <FontAwesomeIcon icon={faInfoCircle} />
           </div>
         </label>
@@ -59,7 +62,13 @@ export default function JeopardyNavbarMenu() {
             onChange={() => handleSettingButtonClick('showAmount')}
             type='checkbox'
           />
-          Show amount with question
+          Amount with question
+          <div
+            className='tooltip tooltip-left'
+            data-tip='Shows the dollar amount when a question is displayed, helpful for manual scoring'
+          >
+            <FontAwesomeIcon icon={faInfoCircle} />
+          </div>
         </label>
       </li>
 
@@ -76,7 +85,7 @@ export default function JeopardyNavbarMenu() {
             onChange={() => handleSettingButtonClick('showScoreboard')}
             type='checkbox'
           />
-          Show scoreboard
+          Scoreboard
         </label>
       </li>
 
@@ -89,7 +98,7 @@ export default function JeopardyNavbarMenu() {
               onChange={() => handleSettingButtonClick('useSoundEffects')}
               type='checkbox'
             />
-            Use sound effects
+            Sound effects
           </label>
         </li>
       )}
