@@ -4,7 +4,6 @@ import {
   faChevronRight,
   faXmark,
 } from '@fortawesome/free-solid-svg-icons'
-import { AutoTextSize } from 'auto-text-size'
 import { NumericFormat } from 'react-number-format'
 import { useJeopardyState } from '../../context/JeopardyContext'
 
@@ -47,7 +46,7 @@ export default function JeopardyScoreboard() {
 
   return (
     <div className='bg-jeopardy-blue h-screen'>
-      <div className='grid grid-cols-5 grid-rows-[8vh_repeat(2,40vh)] gap-x-4 gap-y-[2vh] h-full items-center p-[4vh]'>
+      <div className='grid grid-cols-[repeat(5,calc(80vh/3))] grid-rows-[8vh_repeat(2,40vh)] gap-x-8 gap-y-[2vh] h-full items-center justify-center p-[4vh]'>
         <h1 className='col-span-5 font-jeopardy-card justify-self-center text-[8vh] text-jeopardy-gold uppercase'>
           Scoreboard
         </h1>
@@ -56,41 +55,49 @@ export default function JeopardyScoreboard() {
 
           return (
             <div
-              className='bg-contain bg-no-repeat bg-center h-full relative'
+              className='bg-contain bg-no-repeat bg-center h-full'
               key={index}
               style={{ backgroundImage: 'url("images/jeopardy-podium.png")' }}
             >
-              <NumericFormat
-                displayType='text'
-                prefix='$ '
-                thousandSeparator=','
-                value={score}
-                renderText={(value) => (
-                  <span className='absolute left-[50%] -translate-x-1/2 top-[10%] font-jeopardy-board text-4xl text-shadow-jeopardy-board'>
-                    {value}
-                  </span>
-                )}
-              />
-              <span className='absolute left-[50%] -translate-x-1/2 top-[40%] font-jeopardy-handwriting text-4xl'>
-                Team {index + 1}
-              </span>
-              <div className='absolute join left-[50%] -translate-x-1/2 top-[60%]'>
-                <button
-                  className='btn btn-error btn-soft btn-xl join-item'
-                  onClick={() => {
-                    handleSetScoreClick(index, true)
-                  }}
+              {/* Grid sizing is based on dimensions of the podium image used in the background */}
+              <div className='grid grid-cols-[20.25%_59.50%_20.25%] grid-rows-[9.00%_13.00%_11.00%_22.45%_2.10%_19.50%_22.95%] h-full place-items-center w-full'>
+                <div className='flex' style={{ gridArea: '2 / 2 / 3 / 3' }}>
+                  <NumericFormat
+                    displayType='text'
+                    prefix='$ '
+                    renderText={(value) => (
+                      <span className='font-jeopardy-board text-[5vh] text-shadow-jeopardy-board'>
+                        {value}
+                      </span>
+                    )}
+                    thousandSeparator=','
+                    value={score}
+                  />
+                </div>
+                <span
+                  className='font-jeopardy-handwriting text-[4.5vh]'
+                  style={{ gridArea: '4 / 2 / 5 / 2' }}
                 >
-                  <FontAwesomeIcon icon={faXmark} size='lg' />
-                </button>
-                <button
-                  className='btn btn-success btn-soft btn-xl join-item'
-                  onClick={() => {
-                    handleSetScoreClick(index)
-                  }}
-                >
-                  <FontAwesomeIcon icon={faCheck} size='lg' />
-                </button>
+                  Team {index + 1}
+                </span>
+                <div className='join' style={{ gridArea: '6 / 2 / 7 / 3' }}>
+                  <button
+                    className='btn btn-error btn-soft btn-sm md:btn-md lg:btn-lg xl:btn-xl join-item'
+                    onClick={() => {
+                      handleSetScoreClick(index, true)
+                    }}
+                  >
+                    <FontAwesomeIcon icon={faXmark} size='lg' />
+                  </button>
+                  <button
+                    className='btn btn-success btn-soft btn-sm md:btn-md lg:btn-lg xl:btn-xl join-item'
+                    onClick={() => {
+                      handleSetScoreClick(index)
+                    }}
+                  >
+                    <FontAwesomeIcon icon={faCheck} size='lg' />
+                  </button>
+                </div>
               </div>
             </div>
           )
