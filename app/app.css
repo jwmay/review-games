@@ -28,6 +28,11 @@ body {
   src: url('/fonts/Swiss_911_Ultra_Compressed_BT.ttf') format('truetype');
 }
 
+@font-face {
+  font-family: 'Shadows Intro Light';
+  src: url('/fonts/ShadowsIntoLight-Regular.ttf') format('truetype');
+}
+
 @theme {
   --color-jeopardy-blue: oklch(0.3 0.18 267.41);
   --color-jeopardy-gold: oklch(0.74 0.12 76.76);
@@ -35,6 +40,7 @@ body {
   --font-jeopardy-board: 'Swiss 911', 'Impact', 'Inter', ui-sans-serif,
     system-ui, sans-serif;
   --font-jeopardy-card: 'ITC Korinna Normal', serif;
+  --font-jeopardy-handwriting: 'Shadows Intro Light', script;
 
   --text-shadow-jeopardy-board: 5px 5px 0px #000000;
 }

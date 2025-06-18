@@ -1,11 +1,14 @@
 import { createContext, useContext, useEffect, useReducer } from 'react'
 import { useSearchParams } from 'react-router'
 
+import { config } from '../config'
+
 import {
   JEOPRADY_RESTART_GAME,
   JEOPARDY_SAVE_SETTINGS,
   JEOPARDY_SET_CLICKED,
   JEOPARDY_SET_DATA,
+  JEOPARDY_SET_SCORE,
   JEOPARDY_SET_STATUS,
 } from '../actionTypes'
 
@@ -13,7 +16,13 @@ const JeopardyContext = createContext()
 
 const defaultState = {
   data: { main: [], final: {} },
-  settings: { showAmount: false, showScoreboard: true, studyMode: false },
+  settings: {
+    numTeams: config.jeopardy.numTeams.default,
+    showAmount: false,
+    showScoreboard: true,
+    studyMode: false,
+    useSoundEffects: true,
+  },
   spreadsheetId: '',
   status: {
     isBoardVisible: false,
@@ -22,6 +31,7 @@ const defaultState = {
     isIntroDone: false,
     isScoring: false,
     numClicked: 0,
+    scores: new Array(10).fill(0),
     selected: null,
   },
 }
@@ -63,6 +73,11 @@ const reducer = (state, action) => {
         spreadsheetId: action.payload.spreadsheetId,
         status: { ...state.status, isDataLoaded: true },
       }
+    case JEOPARDY_SET_SCORE:
+      const newScores = [...state.status.scores]
+      newScores[action.payload.id] =
+        newScores[action.payload.id] + parseInt(action.payload.score)
+      return { ...state, status: { ...state.status, scores: newScores } }
     case JEOPARDY_SET_STATUS:
       return {
         ...state,

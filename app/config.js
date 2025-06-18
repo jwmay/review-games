@@ -1,6 +1,11 @@
 export const config = {
   jeopardy: {
     maxQuestions: 6 * 5,
+    numTeams: {
+      default: 10,
+      max: 10,
+      min: 2,
+    },
     sheet: {
       dims: { cols: 4, rows: 32 },
       name: 'DO_NOT_EDIT_OR_DELETE',
