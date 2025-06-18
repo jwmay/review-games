@@ -95,14 +95,14 @@ export default function JeopardyFinalCard() {
       )
   }
 
-  // Play think music when the question is shown
+  // Play think music when the question is shown if settings allow
   useEffect(() => {
     if (view === VIEWS.QUESTION && !isPlaying && !state.settings.studyMode) {
       play()
     } else {
       stop()
     }
-  }, [view])
+  }, [view, state.settings.studyMode])
 
   return (
     <div
