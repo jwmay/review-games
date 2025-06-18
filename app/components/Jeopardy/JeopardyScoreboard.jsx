@@ -1,5 +1,9 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheck, faXmark } from '@fortawesome/free-solid-svg-icons'
+import {
+  faCheck,
+  faChevronRight,
+  faXmark,
+} from '@fortawesome/free-solid-svg-icons'
 import { AutoTextSize } from 'auto-text-size'
 import { NumericFormat } from 'react-number-format'
 import { useJeopardyState } from '../../context/JeopardyContext'
@@ -94,10 +98,10 @@ export default function JeopardyScoreboard() {
       </div>
       <div className='absolute right-0 bottom-0 m-8 text-6xl'>
         <button
-          className='btn btn-warning btn-xl'
+          className='animate-pulse btn btn-warning btn-xl'
           onClick={handleContinueButtonClick}
         >
-          Continue
+          Continue <FontAwesomeIcon icon={faChevronRight} />
         </button>
       </div>
     </div>
