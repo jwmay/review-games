@@ -34,7 +34,7 @@ export default function JeopardyBoard({ data }) {
 
   useEffect(() => {
     // Set 'isFinal' flag once all questions have been selected
-    if (state.status.numClicked === config.jeopardy.maxQuestions) {
+    if (state.status.numClicked === config.jeopardy.numQuestions) {
       dispatch({
         type: JEOPARDY_SET_STATUS,
         payload: { status: 'isFinal', value: true },
@@ -50,7 +50,7 @@ export default function JeopardyBoard({ data }) {
           : ''
       } bg-black h-screen grid grid-cols-[repeat(6,calc(95vw/6))] grid-rows-[repeat(6,calc(95vh/6))] gap-x-[1vw] gap-y-[1vh]`}
     >
-      {[...Array(6)].map((_, index) => (
+      {[...Array(config.jeopardy.numCategories)].map((_, index) => (
         <JeopardyCategoryTile
           category={data[index].category}
           id={index}

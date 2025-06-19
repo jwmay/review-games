@@ -1,6 +1,7 @@
 export const config = {
   jeopardy: {
-    maxQuestions: 6 * 5,
+    numCategories: 6,
+    numQuestions: 6 * 5,
     numTeams: {
       default: 10,
       max: 10,
