@@ -4,11 +4,12 @@ import parse from 'html-react-parser'
 import { useAudioPlayer } from 'react-use-audio-player'
 
 import { useJeopardyState } from '../../context/JeopardyContext'
-import { JEOPRADY_RESTART_GAME } from '../../actionTypes'
+import { JEOPRADY_RESTART_GAME, JEOPARDY_SET_STATUS } from '../../actionTypes'
 
 const VIEWS = {
   ANSWER: 'ANSWER',
   CATEGORY: 'CATEGORY',
+  GAME_OVER: 'GAME_OVER',
   QUESTION: 'QUESTION',
   TITLE_CARD: 'TITLE_CARD',
 }
@@ -38,13 +39,24 @@ export default function JeopardyFinalCard() {
       case VIEWS.QUESTION:
         setView(VIEWS.ANSWER)
         break
+      case VIEWS.ANSWER:
+        setView(VIEWS.GAME_OVER)
+        break
       default:
-        setView(null)
+        setView(VIEWS.GAME_OVER)
     }
   }
+  // @todo: prevent viewing scoreboard from restarting final jeopardy...need status.isGameOver to do this
 
   function handleRestartButtonClick() {
     dispatch({ type: JEOPRADY_RESTART_GAME })
+  }
+
+  function handleViewScoreboardButtonClick() {
+    dispatch({
+      type: JEOPARDY_SET_STATUS,
+      payload: { status: 'isScoring', value: true },
+    })
   }
 
   let display
@@ -79,13 +91,24 @@ export default function JeopardyFinalCard() {
         </AutoTextSize>
       )
       break
-    default:
+    case VIEWS.GAME_OVER:
       display = (
         <div>
           <div className='text-9xl'>GAME OVER</div>
-          <div className='animate-zoom-in' style={{ animationDelay: '1s' }}>
+          <div
+            className={`${animateClass} mt-8`}
+            style={{ animationDelay: '0.5s' }}
+          >
+            {state.settings.showScoreboard && !state.settings.studyMode && (
+              <button
+                className='btn btn-xl btn-warning mr-4'
+                onClick={handleViewScoreboardButtonClick}
+              >
+                View scoreboard
+              </button>
+            )}
             <button
-              className='animate-pulse btn btn-xl btn-accent mt-8'
+              className='animate-pulse btn btn-xl btn-accent'
               onClick={handleRestartButtonClick}
             >
               Restart
@@ -93,6 +116,10 @@ export default function JeopardyFinalCard() {
           </div>
         </div>
       )
+      break
+    default:
+      display = null
+      break
   }
 
   // Play think music when the question is shown if settings allow
@@ -110,7 +137,7 @@ export default function JeopardyFinalCard() {
       onClick={handleCardClick}
       style={{
         color: view === VIEWS.ANSWER ? 'var(--color-jeopardy-gold)' : '',
-        cursor: !view ? 'default' : 'pointer',
+        cursor: view === VIEWS.GAME_OVER ? 'default' : 'pointer',
       }}
     >
       {display}
