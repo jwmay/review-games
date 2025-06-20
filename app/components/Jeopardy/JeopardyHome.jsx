@@ -19,6 +19,7 @@ export default function JeopardyHome() {
     { autoplay: false }
   )
 
+  // Control theme music audio playback based on settings and status
   useEffect(() => {
     if (
       state.status.isDataLoaded &&
@@ -51,10 +52,10 @@ export default function JeopardyHome() {
     display = <JeopardyFinalCard />
   } else if (!state.status.selected) {
     // data but no question selected, display full board
-    display = <JeopardyBoard data={state.data.main} />
+    display = <JeopardyBoard />
   } else {
     // data and question selected, show question then answer
-    display = <JeopardyQuestionCard item={state.status.selected} />
+    display = <JeopardyQuestionCard />
   }
 
   return (

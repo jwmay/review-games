@@ -10,10 +10,12 @@ const VIEWS = {
   QUESTION: 'QUESTION',
 }
 
-export default function JeopardyQuestionCard({ item }) {
+export default function JeopardyQuestionCard() {
   const [view, setView] = useState(VIEWS.QUESTION)
 
   const { state, dispatch } = useJeopardyState()
+
+  const item = state.status.selected
 
   const isScoring = state.settings.showScoreboard && !state.settings.studyMode
 

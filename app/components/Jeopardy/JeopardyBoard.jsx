@@ -6,8 +6,10 @@ import { config } from '../../config'
 import { useJeopardyState } from '../../context/JeopardyContext'
 import { JEOPARDY_SET_STATUS } from '../../actionTypes'
 
-export default function JeopardyBoard({ data }) {
+export default function JeopardyBoard() {
   const { state, dispatch } = useJeopardyState()
+
+  const data = state.data.main
 
   useEffect(() => {
     // Set game status 'isBoardVisible' after category tile animations are complete, if intro is shown
