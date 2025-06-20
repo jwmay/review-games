@@ -35,7 +35,7 @@ export default function JeopardyBoard() {
   }, [state.settings.studyMode])
 
   useEffect(() => {
-    // Set 'isFinal' flag once all questions have been selected
+    // Trigger 'Final Jeopardy' once all questions have been selected
     if (state.status.numClicked === config.jeopardy.numQuestions) {
       dispatch({
         type: JEOPARDY_SET_STATUS,

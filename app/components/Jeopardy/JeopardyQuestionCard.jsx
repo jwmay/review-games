@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { AutoTextSize } from 'auto-text-size'
 import parse from 'html-react-parser'
 
@@ -41,6 +41,15 @@ export default function JeopardyQuestionCard() {
         })
     }
   }
+
+  // Ensure all animations and music end when a question is selected, in case user "jumps the gun"
+  // and clicks a question before the categories have loaded and the music has ended
+  useEffect(() => {
+    dispatch({
+      type: JEOPARDY_SET_STATUS,
+      payload: { status: 'isBoardVisible', value: true },
+    })
+  }, [])
 
   return (
     <div

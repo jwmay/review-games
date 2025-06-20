@@ -29,13 +29,16 @@ export default function JeopardyHome() {
     ) {
       play()
     } else if (
-      (state.settings.studyMode || !state.status.isDataLoaded) &&
+      (state.settings.studyMode ||
+        !state.status.isDataLoaded ||
+        state.status.isBoardVisible) &&
       isPlaying
     ) {
       stop()
     }
   }, [
     state.settings.studyMode,
+    state.status.isBoardVisible,
     state.status.isDataLoaded,
     state.status.isIntroDone,
   ])
