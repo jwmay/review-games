@@ -45,7 +45,10 @@ export default function JeopardyScoreboard() {
   }
 
   return (
-    <div className='bg-jeopardy-blue h-screen'>
+    <div
+      className='absolute bg-jeopardy-blue h-screen w-screen z-10'
+      style={{ display: state.status.isScoring ? 'block' : 'none' }}
+    >
       <div className='grid grid-cols-[repeat(5,calc(80vh/3))] grid-rows-[8vh_repeat(2,40vh)] gap-x-8 gap-y-[2vh] h-full items-center justify-center p-[4vh]'>
         <h1 className='col-span-5 font-jeopardy-card justify-self-center text-[8vh] text-jeopardy-gold uppercase'>
           Scoreboard

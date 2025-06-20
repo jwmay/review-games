@@ -46,13 +46,6 @@ export default function JeopardyHome() {
   } else if (!state.status.isIntroDone && !state.settings.studyMode) {
     // show intro animations and music if user settings allow it
     display = <JeopardyIntro />
-  } else if (
-    state.status.isScoring &&
-    state.settings.showScoreboard &&
-    !state.settings.studyMode
-  ) {
-    // show scoreboard if user settings allow it
-    display = <JeopardyScoreboard />
   } else if (state.status.isFinal) {
     // show the Final Jeopardy question then answer
     display = <JeopardyFinalCard />
@@ -67,7 +60,10 @@ export default function JeopardyHome() {
   return (
     <div>
       <Navbar allowFullscreen menu={<JeopardyNavbarMenu />} title='Jeopardy' />
-      {display}
+      <div className='h-screen relative'>
+        <JeopardyScoreboard />
+        {display}
+      </div>
     </div>
   )
 }

@@ -46,18 +46,27 @@ export default function JeopardyFinalCard() {
         setView(VIEWS.GAME_OVER)
     }
   }
-  // @todo: prevent viewing scoreboard from restarting final jeopardy...need status.isGameOver to do this
 
   function handleRestartButtonClick() {
     dispatch({ type: JEOPRADY_RESTART_GAME })
   }
 
-  function handleViewScoreboardButtonClick() {
+  function handleViewScoreboardButtonClick(e) {
+    e.stopPropagation()
     dispatch({
       type: JEOPARDY_SET_STATUS,
       payload: { status: 'isScoring', value: true },
     })
   }
+
+  // Play think music when the question is shown if settings allow
+  useEffect(() => {
+    if (view === VIEWS.QUESTION && !isPlaying && !state.settings.studyMode) {
+      play()
+    } else {
+      stop()
+    }
+  }, [view, state.settings.studyMode])
 
   let display
   switch (view) {
@@ -78,6 +87,14 @@ export default function JeopardyFinalCard() {
           >
             {state.data.final.category}
           </h3>
+          {state.settings.showScoreboard && !state.settings.studyMode && (
+            <button
+              className='btn btn-xl btn-warning mt-8'
+              onClick={handleViewScoreboardButtonClick}
+            >
+              View scoreboard
+            </button>
+          )}
         </div>
       )
       break
@@ -95,10 +112,7 @@ export default function JeopardyFinalCard() {
       display = (
         <div>
           <div className='text-9xl'>GAME OVER</div>
-          <div
-            className={`${animateClass} mt-8`}
-            style={{ animationDelay: '0.5s' }}
-          >
+          <div className={`${animateClass} mt-8`}>
             {state.settings.showScoreboard && !state.settings.studyMode && (
               <button
                 className='btn btn-xl btn-warning mr-4'
@@ -121,15 +135,6 @@ export default function JeopardyFinalCard() {
       display = null
       break
   }
-
-  // Play think music when the question is shown if settings allow
-  useEffect(() => {
-    if (view === VIEWS.QUESTION && !isPlaying && !state.settings.studyMode) {
-      play()
-    } else {
-      stop()
-    }
-  }, [view, state.settings.studyMode])
 
   return (
     <div
