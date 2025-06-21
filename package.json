@@ -1,6 +1,6 @@
 {
   "name": "review-games",
-  "homepage": "https://jwmay.github.io/review-games/",
+  "homepage": "https://review-games.netlify.app/",
   "private": true,
   "type": "module",
   "scripts": {
